@@ -1,0 +1,24 @@
+//** white colors **//
+$white-0: #EEEEEE;
+$white-0-25: transparentize($white-0, .75);
+$white-0-50: transparentize($white-0, .5);
+$white-0-75: transparentize($white-0, .25);
+
+//** black colors **//
+$black-0: #202A35;
+$black-1: #37414B;
+
+//** light grey colors **//
+$light-grey-0: #C8D6E5;
+
+//** acent colors **//
+$acent-0: #00D2D3;
+$acent-linear-0: linear-gradient(245deg, #00D2D3 0%, #069ABB 100%);
+
+$acent-1: #FFB8B8;
+$acent-linear-1: linear-gradient(245deg, #FFB8B8 0%, #DE8A8A 100%);;
+
+//** event colors **//
+$red-0: #EB5757;
+$yellow-0: #F2C94C;
+$green-0: #27AE60;
