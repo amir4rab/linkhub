@@ -1,0 +1,56 @@
+@import './../../styles/styles';
+
+.navbarDesktop{
+    display: none;
+}
+
+@include for-desktop-up{
+    .navbarDesktop{
+        z-index: 100;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        .inner{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            align-content: center;
+            max-width: 1200px;
+            width: 80%;
+            margin: auto;
+            padding: .75rem 0;
+            .logo{
+                user-select: none;
+                cursor: pointer;
+                transition: color .1s ease-in-out;
+                &:hover, &:focus{
+                    color: darken($light-grey-0, 7.5);
+                }
+                &:active{
+                    color: darken($light-grey-0, 15);
+                }
+            }
+            .links{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                align-content: center;
+                list-style-type: none;
+                .link{
+                    transition: color .1s ease-in-out;
+                    &:hover, &:focus{
+                        color: darken($light-grey-0, 7.5);
+                    }
+                    &:active{
+                        color: darken($light-grey-0, 15);
+                    }
+                    &:not(:last-child){
+                        margin-right: 1rem;
+                    }
+                }
+            }
+        }
+    }
+}
