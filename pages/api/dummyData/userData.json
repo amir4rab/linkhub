@@ -1,0 +1,23 @@
+{
+    "email": "test@test.com",
+    "id": "jackJackson",
+    "socials": [
+        {
+            "type": "instagram",
+            "id": "jackJackson",
+            "displayedText": false
+        },
+        {
+            "type": "telegram",
+            "id": "jackJackson",
+            "displayedText": "my telegram"
+        }
+    ],
+    "profile": {
+        "bg": 0,
+        "fullName": "jack jackson",
+        "about": "freelancer developer",
+        "location": "Germany - frankfurt",
+        "pic": "https://randomuser.me/api/portraits/women/27.jpg"
+    }
+}
