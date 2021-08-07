@@ -1,0 +1,121 @@
+@import './../../styles/styles';
+
+.userProfile {
+    width: 100%;
+    .header{
+        position: relative;
+        background: $black-1;
+        &::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 10vh;
+            background: $acent-linear-0;
+            z-index: 0;
+        }
+        padding: 0 2rem;
+        .head{
+            .image{
+                overflow: hidden;
+                position: absolute;
+                top: 5vh;
+                left: 2rem;
+                height: 10vh;
+                width: 10vh;
+                border: .2rem solid $black-1;
+                border-radius: 50%;
+            }
+        }
+        .details{
+            padding: 17.5vh 0 2rem 0;
+            .personal{
+                padding-bottom: 1rem;
+                .fullName{
+                    font-size: 2rem;
+                    padding-bottom: .5rem;
+                }
+                .id{
+                    font-size: 1rem;
+                    opacity: .75;
+                    font-weight: 400;
+                }
+            }
+            .tabs{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                align-content: center;
+                .btn, .activeBtn {
+                    border: none;
+                    border-radius: .8rem;
+                    padding: .5rem 1rem;
+                    transition: 
+                        color .15s ease-in-out,
+                        background-color .15s ease-in-out;
+
+                    &:not(:last-child){
+                        margin-right: 1rem;
+                    }
+                }
+                .btn{
+                    background: transparent;
+                    color: $white-0;
+                }
+                .activeBtn{
+                    background: $acent-0;
+                    color: $black-0;
+                }
+            }
+        }
+    }
+}
+
+@include for-desktop-up {
+
+    .userProfile {
+        width: 100%;
+        .header{
+            position: relative;
+            background: $black-1;
+            &::before{
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 15vh;
+                background: $acent-linear-0;
+                z-index: 0;
+            }
+            padding: 0;
+            .head{
+                
+                max-width: $desktopMaxWidth;
+                width: $desktopWidth;
+                margin: auto;
+                position: relative;
+                .image{
+                    overflow: hidden;
+                    position: absolute;
+                    top: 7.5vh;
+                    left: 0;
+                    height: 15vh;
+                    width: 15vh;
+                    border: .2rem solid $black-1;
+                    border-radius: 50%;
+                }
+            }
+            .details{
+                display: none;
+            }
+        }
+        .info{
+            padding: 25vh 0 2rem 0;
+            margin: auto;
+            max-width: $desktopMaxWidth;
+            width: $desktopWidth;
+        }
+    }
+}
