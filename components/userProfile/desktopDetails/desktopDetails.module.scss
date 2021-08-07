@@ -1,0 +1,39 @@
+@import './../../../styles/styles';
+
+.desktopDetails{
+    display: none;
+}
+
+@include for-desktop-up {
+    .desktopDetails{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        .box{
+            background: $black-1;
+            border-radius: .8rem;
+            padding: 2rem;
+            width: 37.5%;
+            .name{
+                font-size: 2rem;
+                margin-bottom: .5rem;
+            }
+            .id{
+                opacity: .75;
+                padding-bottom: 1rem;
+                font-weight: 400;
+            }
+            .location{
+                padding-bottom: 1rem;
+                font-weight: 400;
+                font-size: 1rem;
+            }
+            .about{
+                line-height: 150%;
+            }
+        }
+        .linkArea{
+            width: 57.5%;
+        }
+    }
+}
