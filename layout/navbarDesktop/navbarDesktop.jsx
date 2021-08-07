@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import classes from './navbarDesktop.module.scss';
 
-function NavbarDesktop() {
+function NavbarDesktop({ router }) {
+    console.log(router);
     return (
-        <nav className={ classes.navbarDesktop }>
+        <nav className={ router.route.includes('/u/') ? classes.navbarDarkDesktop : classes.navbarDesktop }>
             <div className={ classes.inner }>
                 <h3 className={ classes.logo }>
                     <Link href='/'>

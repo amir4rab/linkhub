@@ -1,11 +1,11 @@
 @import './../../styles/styles';
 
-.navbarDesktop{
+.navbarDesktop, .navbarDarkDesktop{
     display: none;
 }
 
 @include for-desktop-up{
-    .navbarDesktop{
+    .navbarDesktop, .navbarDarkDesktop{
         z-index: 100;
         display: block;
         position: absolute;
@@ -17,20 +17,14 @@
             justify-content: space-between;
             align-items: center;
             align-content: center;
-            max-width: 1200px;
-            width: 80%;
+            max-width: $desktopMaxWidth;
+            width: $desktopWidth;
             margin: auto;
-            padding: .75rem 0;
+            padding: 1rem 0;
             .logo{
                 user-select: none;
                 cursor: pointer;
                 transition: color .1s ease-in-out;
-                &:hover, &:focus{
-                    color: darken($light-grey-0, 7.5);
-                }
-                &:active{
-                    color: darken($light-grey-0, 15);
-                }
             }
             .links{
                 display: flex;
@@ -40,14 +34,51 @@
                 list-style-type: none;
                 .link{
                     transition: color .1s ease-in-out;
+                    &:not(:last-child){
+                        margin-right: 1rem;
+                    }
+                }
+            }
+        }
+    }
+    .navbarDarkDesktop{
+        color: $black-1;
+        .logo{
+            &:hover, &:focus{
+                color: lighten($black-1, 7.5);
+            }
+            &:active{
+                color: lighten($black-1, 15);
+            }
+        }
+        .links{
+            .link{
+                &:hover, &:focus{
+                    color: lighten($black-1, 7.5);
+                }
+                &:active{
+                    color: lighten($black-1, 15);
+                }
+            }
+        }
+    }
+    .navbarDesktop {
+        .inner{
+            .logo{
+                &:hover, &:focus{
+                    color: darken($light-grey-0, 7.5);
+                }
+                &:active{
+                    color: darken($light-grey-0, 15);
+                }
+            }
+            .links{
+                .link{
                     &:hover, &:focus{
                         color: darken($light-grey-0, 7.5);
                     }
                     &:active{
                         color: darken($light-grey-0, 15);
-                    }
-                    &:not(:last-child){
-                        margin-right: 1rem;
                     }
                 }
             }
