@@ -37,6 +37,35 @@
                     &:not(:last-child){
                         margin-right: 1rem;
                     }
+                    .userBtn{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        align-content: center;
+                        padding: .5rem 1rem;
+                        min-width: 4rem;
+                        min-height: 1.5rem;
+                        background: $black-1;
+                        color: $light-grey-0;
+                        border: none;
+                        border-radius: .4rem;
+                        .loadingSpinner{
+                            height: 1rem;
+                            width: 1rem;
+                            border-top: .25rem solid $acent-0;
+                            border-radius: 50%;
+                            opacity: .5;
+                            @keyframes rotate {
+                                from {
+                                    transform: rotateZ(0deg);
+                                }
+                                to {
+                                    transform: rotateZ(360deg);
+                                }
+                            }
+                            animation: rotate .5s infinite forwards;
+                        }
+                    }
                 }
             }
         }
