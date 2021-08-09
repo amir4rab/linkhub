@@ -1,0 +1,68 @@
+@import './../../styles/styles';
+
+
+.loginPage{
+    padding: 2rem 2rem 5vh 2rem;
+    .title{
+        font-size: 3rem;
+        padding-bottom: 2rem;
+    }
+    .loginBox{
+        border: transparentize( $light-grey-0, .75 ) .1rem solid;
+        padding: 2rem;
+        border-radius: .4rem;
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+
+        .subTitle{
+            font-weight: 400;
+            text-align: center;
+            text-transform: capitalize;
+            padding-bottom: 2rem;
+        }
+        .btn{
+            padding: .5rem 1rem;
+            border: none;
+            background: $black-1;
+            color: $light-grey-0;
+            border-radius: .4rem;
+            transition: background-color .1s ease-in-out;
+            &:active {
+                background-color: darken( $black-1, 15);
+            }
+        }
+    }
+}
+
+@include for-desktop-up {
+    .loginPage{
+        max-width: $desktopMaxWidth;
+        width: $desktopWidth;
+        margin: auto;
+        padding: 10vh 0 5vh 0;
+        .title{
+            font-size: 4rem;
+        }
+        .loginBox{
+            max-width: 600px;
+            width: 50%;
+            margin: auto;
+            .subTitle{
+                font-size: 2rem;
+            }
+            .btn{
+                font-size: 1rem;
+                &:hover {
+                    cursor: pointer;
+                }
+                &:hover, &:focus {
+                    background-color: darken( $black-1, 7.5);
+                }
+            }
+        }
+    }
+}
