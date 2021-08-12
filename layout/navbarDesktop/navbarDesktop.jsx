@@ -6,7 +6,12 @@ function NavbarDesktop({ router }) {
     const [ session, loading ] = useSession();
 
     return (
-        <nav className={ router.route.includes('/u/') ? classes.navbarDarkDesktop : classes.navbarDesktop }>
+        <nav 
+            className={ 
+                router.route.includes('/u/')|| ( router.route.includes('/profile') && !router.route.includes('settings') ) ?
+                classes.navbarDarkDesktop :
+                classes.navbarDesktop 
+            }>
             <div className={ classes.inner }>
                 <h3 className={ classes.logo }>
                     <Link href='/'>
