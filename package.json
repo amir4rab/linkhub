@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "framer-motion": "^4.1.17",
+    "mongodb": "^4.1.0",
     "next": "11.0.1",
     "next-auth": "^3.27.3",
     "react": "17.0.2",
