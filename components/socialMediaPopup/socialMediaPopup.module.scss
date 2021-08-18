@@ -1,0 +1,42 @@
+@import '../../styles/styles';
+
+.socialMediaPopup {
+    // display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #161616ab;
+    backdrop-filter: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    z-index: 100 ;
+    .inner {
+        width: 50%;
+        height: 50%;
+        background: $black-1;
+        border-radius: .4rem;
+        position: relative;
+        .exitBtn{
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            color: $light-grey-0;
+            font-weight: 500;
+            font-size: 1.5rem;
+            transition: .1s ease-in-out;
+            z-index: 150;
+            &:hover{
+                color: darken( $light-grey-0, 7.5 );
+                cursor: pointer;
+            }
+            &:active{
+                color: darken( $light-grey-0, 15 );
+            }
+        }
+    }
+}
