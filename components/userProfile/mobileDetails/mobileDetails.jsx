@@ -1,7 +1,9 @@
+import Link from 'next/link';
+
 import classes from './mobileDetails.module.scss';
 import SocialLink from '../socialLink/socialLink';
 
-function MobileDetails({ userData, activeTab }) {
+function MobileDetails({ userData, activeTab, isOwner }) {
     console.log(userData.socials)
 
     return (
@@ -15,6 +17,22 @@ function MobileDetails({ userData, activeTab }) {
                         userData.socials.map(social => (
                             <SocialLink data={social} key={ social.type }/>
                         ))
+                    }
+                    {
+                        userData.socials.length === 0 && isOwner ? 
+                        <div className={ classes.box }>
+                            <Link
+                                href={{
+                                    pathname: '/profile/settings',
+                                    query: {
+                                        a: 'profile',
+                                        event: 'addSocial'
+                                    }
+                                }}
+                            >
+                                Add your fist item here!
+                            </Link>
+                        </div> : null
                     }
                 </div>
                 <div className={ classes.tab }>
