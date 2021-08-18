@@ -1,0 +1,48 @@
+@import '../../../styles/styles';
+
+.searchBox{
+    padding: 2rem;
+    overflow-y: scroll;
+    max-height: 100%;
+    max-width: 100%;
+    .title {
+        font-size: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+    .searchInput{
+        margin-bottom: 1rem;
+        border-bottom: .2rem solid transparentize( $black-0, .75 ) !important;
+        border-radius: 0 !important;
+        transition: border-bottom .1s ease-in-out;
+        outline: none;
+        &:active, &:focus{
+            border-bottom: .2rem solid $black-0 !important;
+        }
+    }
+    .resultArea{
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        align-content: flex-start;
+        flex-wrap: wrap;
+        .socialItem{
+            width: 25%;
+            padding: 1.5rem;
+            transition: background-color .3s ease-in-out;
+            &:hover{
+                cursor: pointer;
+            }
+            &:hover, &:focus{
+                background-color: darken($black-1, 5);
+            }
+            display: flex;
+            align-items: center;
+            align-content: center;
+            justify-content: center;
+            flex-direction: column;
+            .img{
+                margin-bottom: .5rem;
+            }
+        }
+    }
+}
