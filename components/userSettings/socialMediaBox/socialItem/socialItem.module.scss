@@ -1,0 +1,50 @@
+@import '../../../../styles/styles';
+
+.socialItem{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    background: $black-1;
+    border-radius: .4rem;
+    padding: .4rem 1rem;
+    margin-bottom: 1rem;
+    .logo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        padding-right: .75rem;
+    }
+    .main{
+        .title{
+            font-weight: 500;
+        }
+    }
+    .editBox{
+        flex-grow: 1;
+        // background: red;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        .deleteBtn{
+            background: none;
+            color: $light-grey-0;
+            transition: 
+                .1s ease-in-out color,
+                .3s ease-in-out background-color;
+        }
+
+        .deleteBtn{
+            &:hover{
+                cursor: pointer;
+            }
+            &:hover, &:focus {
+                color: $red-0;
+            }
+            &:active {
+                background-color: $black-0;
+            }
+        }
+    }
+}
