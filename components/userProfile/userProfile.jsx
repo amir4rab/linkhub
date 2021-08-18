@@ -1,11 +1,15 @@
 import { useState } from 'react';
 import Image from 'next/image'
+import Link from 'next/link'
+
 import classes from './userProfile.module.scss';
+
 import MobileDetails from './mobileDetails/mobileDetails';
 import DesktopDetails from './desktopDetails/desktopDetails';
+import settingsIcon from './../../public/icons/light/settingsIcon.svg'
 
-function UserProfile({ userData }) {
-    const [ isMobile, setIsMobile ] = useState(true);
+function UserProfile({ userData, isOwner }) {
+    // const [ isMobile, setIsMobile ] = useState(true);
     const [ activeTab, setActiveTab ] = useState(0);
 
 
@@ -19,14 +23,36 @@ function UserProfile({ userData }) {
                         <Image src={ userData.profile.pic } layout='fill' alt="profile image" />
                     </div>
                     {
-                        false ? 
-                        <div>
-                            more settings
+                        isOwner ? 
+                        <div className={ classes.headButtons }>
+                            <div className={ classes.inner }>
+                                <button className={ classes.settingsBtn }>
+                                    <Link
+                                        href={{
+                                            pathname: '/profile/settings',
+                                            query: { a: 'profile' }
+                                        }}     
+                                    >
+                                        Edit profile
+                                    </Link>
+                                </button>
+                                <button className={ classes.settingsBtn }>
+                                    <Link 
+                                        href={{
+                                            pathname: '/profile/settings',
+                                            query: { a: 'settings' }
+                                        }} 
+                                        passHref
+                                    >
+                                        <Image className={ classes.innerImage } src={ settingsIcon } alt='settings'/>
+                                    </Link>
+                                </button>
+                            </div>
                         </div> : null
                     }
                 </div>
                 {
-                    isMobile ?
+                    
                     <div className={ classes.details }>
                         <div className={ classes.personal }>
                             <h1 className={ classes.fullName }>
@@ -50,18 +76,20 @@ function UserProfile({ userData }) {
                                 about
                             </button>
                         </div>
-                    </div> : null
+                    </div>
                 }
             </div>
             <div className={ classes.info }>
-                {
+                {/* {
                     isMobile ?
                     <MobileDetails userData={ userData } activeTab={ activeTab } /> : null
                 }
                 {
                     isMobile ? 
                     <DesktopDetails userData={ userData } /> : null
-                }
+                } */}
+                <MobileDetails isOwner={ isOwner } userData={ userData } activeTab={ activeTab } />
+                <DesktopDetails isOwner={ isOwner } userData={ userData } />
             </div>
         </div>
     );
