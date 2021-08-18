@@ -1,7 +1,9 @@
+import Link from 'next/link';
+
 import classes from './desktopDetails.module.scss';
 import SocialLink from './../socialLink/socialLink';
 
-function DesktopDetails({ userData }) {
+function DesktopDetails({ userData, isOwner }) {
     return (
         <div className={ classes.desktopDetails }>
             <div className={ classes.box }>
@@ -29,6 +31,22 @@ function DesktopDetails({ userData }) {
                     userData.socials.map(social => (
                         <SocialLink data={social} key={ social.type }/>
                     ))
+                }
+                {
+                    userData.socials.length === 0 && isOwner ? 
+                    <div className={ classes.box }>
+                        <Link
+                            href={{
+                                pathname: '/profile/settings',
+                                query: {
+                                    a: 'profile',
+                                    event: 'addSocial'
+                                }
+                            }}
+                        >
+                            Add your fist item here!
+                        </Link>
+                    </div> : null
                 }
             </div>
         </div>

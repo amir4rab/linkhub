@@ -34,6 +34,13 @@
         }
         .linkArea{
             width: 57.5%;
+            .box{
+                padding: .5rem;
+                width: 100%;
+                text-align: center;
+                background: $black-1;
+                border-radius: .8rem;
+            }
         }
     }
 }
