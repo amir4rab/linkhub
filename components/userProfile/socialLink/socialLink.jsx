@@ -6,35 +6,36 @@ import socialLogo from './../../../libs/socialLink/socialLogo';
 
 
 function SocialLink({ data }) {
-    const socialPath = socialLink(data.type, data.id);
+    const socialPath = socialLink(data.name, data.id);
+    // console.log(data);
 
     return (
         <div className={ classes.socialLink }>
             <div className={ classes.image }>
-                <Image src={ socialLogo(data.type).dark } alt={`${data.type} logo`} width='100%' height='100%'/>
+                <Image src={ socialLogo(data.name).dark } alt={`${data.name} logo`} width='100%' height='100%'/>
             </div>
             <div className={ classes.mobileLink }>
                 {
-                    data.displayedText === false ?
+                    data.label === false ?
                     <a target='_blank' rel='noreferrer' href={ socialPath.path }>
                         @{data.id}
                     </a>
                     :
                     <a target='_blank' rel='noreferrer' href={ socialPath.path }>
-                        { data.displayedText }
+                        { data.label }
                     </a>
                 }
             </div>
             <div className={ classes.desktopLink }>
                 {
-                    data.displayedText === false ?
+                    data.label === false ?
                     <a target='_blank' rel='noreferrer' href={ socialPath.path }>
                         <p className={ classes.main }>@{ data.id }</p>
                         <p className={ classes.sub }>{ socialPath.path }</p>
                     </a>
                     :
                     <a target='_blank' rel='noreferrer' href={ socialPath.path }>
-                        <p className={ classes.main }>{ data.displayedText }</p>
+                        <p className={ classes.main }>{ data.label }</p>
                         <p className={ classes.sub }>{ socialPath.path }</p>
                     </a>
                 }
