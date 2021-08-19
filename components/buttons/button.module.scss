@@ -1,0 +1,47 @@
+@import '../../styles/styles';
+
+@mixin colorTransitions {
+    transition:
+        background-color .3s ease-in-out,
+        color .1s ease-in-out;
+    &:disabled{
+        background-color: $black-0;
+        color: lighten($black-0, 15);
+        &:hover{
+            cursor: not-allowed;
+        }
+        &:hover, &:active, &:focus{
+            background-color: $black-0;
+        }
+    }
+}
+
+.greenButton{
+    background-color: $green-0;
+    color: $black-0;
+    @include colorTransitions;
+    &:hover{
+        cursor: pointer;
+    }
+    &:hover{
+        background-color: lighten($green-0, 10);
+    }
+    &:active{
+        color: lighten($black-0, 25);
+    }
+}
+
+.redButton{
+    background-color: $red-0;
+    color: $black-0;
+    @include colorTransitions;
+    &:hover{
+        cursor: pointer;
+    }
+    &:hover{
+        background-color: lighten($red-0, 10);
+    }
+    &:active{
+        color: lighten($black-0, 25);
+    }
+}

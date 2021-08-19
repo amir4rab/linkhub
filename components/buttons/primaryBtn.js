@@ -14,12 +14,12 @@ const getClass = (color) => {
     }
 }
 
-function PrimaryBtn({ color, onClick, children }) {
-    console.log(getClass(color))
+function PrimaryBtn({ color, onClick, children, disabled }) {
     return (
         <button
             className={ getClass(color) }
             onClick={ onClick }
+            disabled={ disabled }
         >
             { children }
         </button>
