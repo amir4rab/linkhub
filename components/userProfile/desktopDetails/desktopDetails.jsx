@@ -29,7 +29,7 @@ function DesktopDetails({ userData, isOwner }) {
             <div className={ classes.linkArea }>
                 {
                     userData.socials.map(social => (
-                        <SocialLink data={social} key={ social.type }/>
+                        <SocialLink data={social} key={ `d${social.instance}` }/>
                     ))
                 }
                 {

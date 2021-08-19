@@ -15,7 +15,7 @@ function MobileDetails({ userData, activeTab, isOwner }) {
                 <div className={ classes.tab }>
                     {
                         userData.socials.map(social => (
-                            <SocialLink data={social} key={ social.type }/>
+                            <SocialLink data={social} key={ `m${social.instance}` }/>
                         ))
                     }
                     {
