@@ -17,7 +17,7 @@ function SocialItem({ data, deleteItem }) {
             <div className={ classes.editBox }>
                 <button
                     className={ classes.deleteBtn }
-                    onClick={ deleteItem }
+                    onClick={ _ => deleteItem(data.instance) }
                 >
                     Delete
                 </button>
