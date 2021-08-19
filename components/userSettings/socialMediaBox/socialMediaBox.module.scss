@@ -1,0 +1,24 @@
+@import '../../../styles/styles';
+
+.socialMediaBox {
+    display: block;
+    .addNew{
+        width: 100%;
+        .addButton {
+            color: $light-grey-0;
+            width: 100%;
+            background: none;
+            padding: .5rem;
+            transition: 
+                .3s ease-in-out background-color,
+                .1s ease-in-out color;
+            &:hover{
+                cursor: pointer;
+                background: $black-1;
+            }
+            &:active{
+                color: darken($light-grey-0, 15);
+            }
+        }
+    }
+}
