@@ -7,7 +7,7 @@ export const validateInput = (input, maxLength = 24 ) => {
     };
 }
 
-export const loosseValidateInput = (input, maxLength = 150 ) => {
+export const looseValidateInput = (input, maxLength = 150 ) => {
     const regex = /^[0-9a-zA-Z .  , : ;]+$/g;
     if ( regex.exec(input) && input.length < maxLength ) {
         return true;
@@ -18,7 +18,7 @@ export const loosseValidateInput = (input, maxLength = 150 ) => {
 
 export const isNum = (input) => {
     const regex = /^[0-9]+$/g;
-    if ( regex.exec(input) && input.length < maxLength ) {
+    if ( regex.exec(input) ) {
         return true;
     } else {
         return false;

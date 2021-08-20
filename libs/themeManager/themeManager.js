@@ -25,6 +25,6 @@ export const getClassByName = ( colorName, mainClass ) => {
 export const getClassByClass = ( colorClass, mainClass ) => mainClass[colorClass];
 
 export const getClassByIndex = ( index, mainClass ) => {
-    if( index + 1 >= themesArr.length ) return mainClass[themesArr[0].class];
+    if( index + 1 > themesArr.length ) return mainClass[themesArr[0].class];
     return mainClass[themesArr[index].class]
 };
