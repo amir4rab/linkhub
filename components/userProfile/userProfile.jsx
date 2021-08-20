@@ -11,7 +11,6 @@ import settingsIcon from './../../public/icons/light/settingsIcon.svg'
 
 function UserProfile({ userData, isOwner }) {
     const [ activeTab, setActiveTab ] = useState(0);
-
     return (
         <div className={ getClassByIndex(userData.profile.bg, classes) }>
             <div className={ classes.header }>

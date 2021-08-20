@@ -1,0 +1,38 @@
+@import '../../../styles/styles';
+
+.settingsNavbar{
+    display: block;
+    background: $black-1;
+    border-radius: .8rem;
+    width: 100%;
+    padding: 2rem 1rem;
+    .linkWrapper {
+        .btn, .activeBtn {
+            width: 100%;
+            padding: 1rem;
+            background: none;
+            border: transparent solid .1rem;
+            text-align: left;
+            font-size: 1rem;
+            
+            transition: 
+                background-color .3s ease-in-out,
+                color .1s ease-in-out,
+                border-left .3s ease-in-out;
+            
+                color: $light-grey-0;
+            &:hover{
+                cursor: pointer;
+            }
+            &:hover {
+                background: $black-0;
+            }
+            &:active {
+                color: darken( $light-grey-0, 15 );
+            }
+        }
+        .activeBtn {
+            border-left: .1rem $light-grey-0 solid;
+        }
+    }
+}

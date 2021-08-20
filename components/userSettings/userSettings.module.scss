@@ -1,0 +1,33 @@
+@import './../../styles/styles';
+
+.userSettings {
+    max-width: $desktopMaxWidth;
+    width: $desktopWidth;
+    padding: 7.5vh 0;
+    margin: auto;
+    .title{
+        text-transform: capitalize;
+        padding-bottom: 1rem;
+    }
+    // background: #000060cb;
+    .content{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        align-content: center;
+        .leftSide{
+            width: 27.5%;
+            height: 10rem;
+            // background: green;
+            // width: 30%;
+            // background: $black-1;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 2rem;
+        }
+        .rightSide{
+            width: 67.5%;
+            margin-left: auto;
+        }
+    }
+}
