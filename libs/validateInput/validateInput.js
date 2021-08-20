@@ -15,3 +15,12 @@ export const loosseValidateInput = (input, maxLength = 150 ) => {
         return false;
     };
 }
+
+export const isNum = (input) => {
+    const regex = /^[0-9]+$/g;
+    if ( regex.exec(input) && input.length < maxLength ) {
+        return true;
+    } else {
+        return false;
+    };
+}
