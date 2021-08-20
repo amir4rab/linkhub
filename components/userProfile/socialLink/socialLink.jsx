@@ -1,8 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import classes from './socialLink.module.scss';
-import socialLink from './../../../libs/socialLink/socialLink';
-import socialLogo from './../../../libs/socialLink/socialLogo';
+import { socialLink, socialLogo } from './../../../libs/socialLink/socialArr';
 
 
 function SocialLink({ data }) {
