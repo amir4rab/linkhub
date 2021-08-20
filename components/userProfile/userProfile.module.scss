@@ -1,6 +1,6 @@
 @import './../../styles/styles';
 
-.userProfile {
+@mixin cssMobileProperties($color, $colorLinear) {
     width: 100%;
     .header{
         position: relative;
@@ -12,7 +12,7 @@
             left: 0;
             width: 100vw;
             height: 10vh;
-            background: $acent-linear-0;
+            background: $colorLinear;
             z-index: 0;
         }
         padding: 0 2rem;
@@ -67,16 +67,15 @@
                     color: $white-0;
                 }
                 .activeBtn{
-                    background: $acent-0;
+                    background: $color;
                     color: $black-0;
                 }
             }
         }
     }
 }
-
-@include for-desktop-up {
-    .userProfile {
+@mixin cssDesktopProperties($color, $colorLinear) {
+    @include for-desktop-up {
         width: 100%;
         .header{
             position: relative;
@@ -89,7 +88,7 @@
                 left: 0;
                 width: 100vw;
                 height: 15vh;
-                background: $acent-linear-0;
+                background: $colorLinear;
                 z-index: 0;
             }
             .head{
@@ -160,4 +159,17 @@
             width: $desktopWidth;
         }
     }
+}
+
+.theme0{
+    @include cssMobileProperties($accent-0, $accent-linear-0);
+    @include cssDesktopProperties($accent-0, $accent-linear-0);
+}
+.theme1{
+    @include cssMobileProperties($accent-1, $accent-linear-1);
+    @include cssDesktopProperties($accent-1, $accent-linear-1);
+}
+.theme2{
+    @include cssMobileProperties($accent-2, $accent-linear-2);
+    @include cssDesktopProperties($accent-2, $accent-linear-2);
 }

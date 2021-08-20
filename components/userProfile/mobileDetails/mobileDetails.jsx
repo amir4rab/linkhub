@@ -3,7 +3,7 @@ import Link from 'next/link';
 import classes from './mobileDetails.module.scss';
 import SocialLink from '../socialLink/socialLink';
 
-function MobileDetails({ userData, activeTab, isOwner }) {
+function MobileDetails({ userData, activeTab, isOwner, color }) {
     console.log(userData.socials)
 
     return (
@@ -15,7 +15,7 @@ function MobileDetails({ userData, activeTab, isOwner }) {
                 <div className={ classes.tab }>
                     {
                         userData.socials.map(social => (
-                            <SocialLink data={social} key={ `m${social.instance}` }/>
+                            <SocialLink data={social} color={ color } key={ `m${social.instance}` }/>
                         ))
                     }
                     {

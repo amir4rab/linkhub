@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from 'next/image';
+import Link from 'next/link';
+import { getClassByIndex } from './../../libs/themeManager/themeManager';
 
 import classes from './userProfile.module.scss';
 
@@ -9,14 +10,10 @@ import DesktopDetails from './desktopDetails/desktopDetails';
 import settingsIcon from './../../public/icons/light/settingsIcon.svg'
 
 function UserProfile({ userData, isOwner }) {
-    // const [ isMobile, setIsMobile ] = useState(true);
     const [ activeTab, setActiveTab ] = useState(0);
 
-
-    console.log(userData);
-
     return (
-        <div className={ classes.userProfile }>
+        <div className={ getClassByIndex(userData.profile.bg, classes) }>
             <div className={ classes.header }>
                 <div className={ classes.head }>
                     <div className={ classes.image }>
@@ -88,8 +85,8 @@ function UserProfile({ userData, isOwner }) {
                     isMobile ? 
                     <DesktopDetails userData={ userData } /> : null
                 } */}
-                <MobileDetails isOwner={ isOwner } userData={ userData } activeTab={ activeTab } />
-                <DesktopDetails isOwner={ isOwner } userData={ userData } />
+                <MobileDetails color={ userData.profile.bg } isOwner={ isOwner } userData={ userData } activeTab={ activeTab } />
+                <DesktopDetails color={ userData.profile.bg } isOwner={ isOwner } userData={ userData } />
             </div>
         </div>
     );

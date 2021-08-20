@@ -3,7 +3,7 @@ import Link from 'next/link';
 import classes from './desktopDetails.module.scss';
 import SocialLink from './../socialLink/socialLink';
 
-function DesktopDetails({ userData, isOwner }) {
+function DesktopDetails({ userData, isOwner, color }) {
     return (
         <div className={ classes.desktopDetails }>
             <div className={ classes.box }>
@@ -29,7 +29,7 @@ function DesktopDetails({ userData, isOwner }) {
             <div className={ classes.linkArea }>
                 {
                     userData.socials.map(social => (
-                        <SocialLink data={social} key={ `d${social.instance}` }/>
+                        <SocialLink data={social} color={ color } key={ `d${social.instance}` }/>
                     ))
                 }
                 {

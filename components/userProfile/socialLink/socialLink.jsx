@@ -2,14 +2,15 @@ import React from 'react';
 import Image from 'next/image';
 import classes from './socialLink.module.scss';
 import { socialLink, socialLogo } from './../../../libs/socialLink/socialArr';
+import { getClassByIndex } from './../../../libs/themeManager/themeManager';
 
 
-function SocialLink({ data }) {
+function SocialLink({ data, color }) {
+    // console.log(color)
     const socialPath = socialLink(data.name, data.id);
-    // console.log(data);
 
     return (
-        <div className={ classes.socialLink }>
+        <div className={ getClassByIndex(color, classes) }>
             <div className={ classes.image }>
                 <Image src={ socialLogo(data.name).dark } alt={`${data.name} logo`} width='100%' height='100%'/>
             </div>
