@@ -45,3 +45,29 @@
         color: lighten($black-0, 25);
     }
 }
+
+
+.settingsBtn{
+    width: 2rem;
+    height: 2rem;
+    background-color: transparent;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    transition: background-color .3s ease-in-out;
+    svg{
+        height: 24px;
+        width: 24px;
+    }
+    &:hover{
+        cursor: pointer;
+    }
+    &:hover, &:focus {
+        background-color: lighten($black-0, 7.5);
+    }
+    &:active {
+        background-color: lighten($black-0, 15);
+    }
+}
