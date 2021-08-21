@@ -7,7 +7,7 @@ import classes from './userProfile.module.scss';
 
 import MobileDetails from './mobileDetails/mobileDetails';
 import DesktopDetails from './desktopDetails/desktopDetails';
-import settingsIcon from './../../public/icons/light/settingsIcon.svg'
+import SettingsBtn from '../buttons/settingsBtn';
 
 function UserProfile({ userData, isOwner }) {
     const [ activeTab, setActiveTab ] = useState(0);
@@ -32,17 +32,7 @@ function UserProfile({ userData, isOwner }) {
                                         Edit profile
                                     </Link>
                                 </button>
-                                <button className={ classes.settingsBtn }>
-                                    <Link 
-                                        href={{
-                                            pathname: '/profile/settings',
-                                            query: { a: 'settings' }
-                                        }} 
-                                        passHref
-                                    >
-                                        <Image className={ classes.innerImage } src={ settingsIcon } alt='settings'/>
-                                    </Link>
-                                </button>
+                                <SettingsBtn />
                             </div>
                         </div> : null
                     }
