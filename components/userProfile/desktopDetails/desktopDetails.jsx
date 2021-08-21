@@ -44,7 +44,7 @@ function DesktopDetails({ userData, isOwner, color }) {
                                 }
                             }}
                         >
-                            Add your fist item here!
+                            Add your first item here!
                         </Link>
                     </div> : null
                 }
