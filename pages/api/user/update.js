@@ -1,7 +1,7 @@
 // import userData from './userData.json';
 import { getSession } from 'next-auth/client';
 import { dbConnect } from '../../../libs/mongoDb/mongoDb';
-import { validateInput, looseValidateInput, isNum } from '../../../libs/validateInput/validateInput';
+import { validateInput, validateSocialArrItem, looseValidateInput, isNum } from '../../../libs/validateInput/validateInput';
 
 const validateSocials = (dataArr, errorBody) => dataArr.map(item => {
     if ( !checkIfItemIsValid(item) ) {
@@ -18,17 +18,20 @@ const validateSocials = (dataArr, errorBody) => dataArr.map(item => {
 })
 
 const checkIfItemIsValid = (dataObj) => {
-    console.log(dataObj)
     const objKeys = Object.keys(dataObj);
     if( objKeys.includes(['name', 'id', 'instance', 'label']) ) return false;
-    if( objKeys.length === 4 ) return false;
+    if( objKeys.length !== 4 ) return false;
     let allItemsAreValid = true;
     objKeys.every(item => {
-        console.log(dataObj[item])
-        return true;
-        // if ( ( typeof(dataObj[item]) === String || typeof(dataObj[item]) === Boolean ) && validateInput(dataObj[item]) ) return true;
-        // allItemsAreValid = false;
-        // return false;
+        console.log(dataObj[item]);
+        if ( typeof(dataObj[item]) === 'boolean' ) {
+            return true;
+        } else if ( typeof(dataObj[item]) === 'string' && validateSocialArrItem(dataObj[item]) ) {
+            return true;
+        } else {
+            allItemsAreValid = false;
+            return false;
+        };
     })
     return allItemsAreValid;
 };
@@ -48,7 +51,7 @@ const handler = async (req, res) => {
     if( session && req.body.length !== 0 ) {
         try {
             const reqBody = await JSON.parse(req.body);
-            console.log(reqBody);
+            // console.log(reqBody);
 
             const client = await dbConnect();
             const db = client.db();
@@ -96,7 +99,6 @@ const handler = async (req, res) => {
                 }
             }
 
-            console.log(reqBody.profile.bg);
             if ( reqBody.profile.bg !== null ) {
                 if ( isNum(reqBody.profile.bg) ){
                     updateDocument.$set.profile.bg = reqBody.profile.bg;
@@ -108,13 +110,17 @@ const handler = async (req, res) => {
 
             // validating social links 
             if( reqBody.socials !== null ) {
-                const validatedArr = validateSocials(reqBody.socials, errorBody);
-                updateDocument.$set.socials = validatedArr;
+                try {
+                    const validatedArr = validateSocials(reqBody.socials, errorBody);
+                    updateDocument.$set.socials = validatedArr;
+                } catch {
+                    errorBody = 'error in validating the social arr!';
+                    throw(new Error(errorBody));
+                }
             }
 
             const results = await collection.updateOne(filter,updateDocument);
 
-            console.log(results);
             res.status(200).json({
                 res: 'successful operation!'
             });

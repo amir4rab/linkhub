@@ -24,3 +24,12 @@ export const isNum = (input) => {
         return false;
     };
 }
+
+export const validateSocialArrItem = (input) => {
+    const regex = /^[0-9a-zA-Z -]+$/g;
+    if ( regex.exec(input) ) {
+        return true;
+    } else {
+        return false;
+    };
+}
