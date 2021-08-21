@@ -40,11 +40,38 @@ const semiCheckBeforeStore = ( value, storingObjFn, errorObjFn, maxLength = 150 
 }
 
 function SettingsContent({ userData, activeSection, action }) {
-    const [ localUserData, setLocalUserData ] = useState(userData)
-    // console.log(localUserData);
+    const [ localUserData, setLocalUserData ] = useState(userData);
+
+
+
+    // scrolling to active element //
     const profileRef = useRef();
     const settingsRef = useRef();
+    const [ scrolledTo, setScrolledTo ] = useState(null);
+    useEffect( _ => {
+        switch(activeSection) {
+            case 'settings': {
+                if (scrolledTo === 'settings') return;
+                window.scroll({
+                    top: settingsRef.current.offsetTop,
+                    behavior: 'smooth'
+                });
+                setScrolledTo('settings')
+                break;
+            }
+            case 'profile': {
+                if (scrolledTo === 'profile') return;
+                window.scroll({
+                    top: profileRef.current.offsetTop,
+                    behavior: 'smooth'
+                });
+                setScrolledTo('profile')
+                break;
+            }
+        }
+    }, [ scrolledTo, setScrolledTo, activeSection ]);
 
+    // data form the form  //
     const [ dataChanged, setDataChanged ] = useState(false);
     const [ isLoading, setIsLoading ] = useState(false);
 
@@ -69,6 +96,7 @@ function SettingsContent({ userData, activeSection, action }) {
 
     const [ allValuesAreValid, setAllValuesAreValid ] = useState(true);
 
+    // checking if the data has been changed //
     useEffect( _ => {
         const location = locationCity.length !== 0 && locationCountry.length !== 0 ? `${locationCountry}-${locationCity}` : null;
         if(
@@ -89,6 +117,7 @@ function SettingsContent({ userData, activeSection, action }) {
         }
     },[ locationCity, locationCountry, username, socialArr, localUserData, setDataChanged, about, fullName, bg ]);
 
+    // checking if all of input are valid //
     useEffect( _ => {
         if (
             locationCityError.length === 0 &&
@@ -103,6 +132,7 @@ function SettingsContent({ userData, activeSection, action }) {
         }
     },[ locationCityError, locationCountryError, usernameError, aboutError, setAllValuesAreValid, fullNameError ]);
 
+    // making a api call to the backend to submit new values //
     const submitToApi = () => {
         setIsLoading(true);
         const location = locationCity.length !== 0 && locationCountry.length !== 0 ? `${locationCountry.trim()} - ${locationCity.trim()}` : null;
@@ -267,7 +297,7 @@ function SettingsContent({ userData, activeSection, action }) {
                     <h4 className={ classes.subTitle }>
                         Social medias
                     </h4>
-                    <SocialMediaBox socialArr={ socialArr } setSocialArr={ setSocialArr } />
+                    <SocialMediaBox addItemCall={ action } socialArr={ socialArr } setSocialArr={ setSocialArr } />
                 </div>
             </div>
             <div ref={ settingsRef } className={ classes.section }>

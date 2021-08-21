@@ -1,10 +1,14 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import SocialMediaPopup from '../../socialMediaPopup/socialMediaPopup';
 import SocialItem from './socialItem/socialItem';
 import classes from './socialMediaBox.module.scss';
 
-function SocialMediaBox({ socialArr, setSocialArr }) {
+function SocialMediaBox({ socialArr, setSocialArr, addItemCall }) {
     const [ displayPopup, setDisplayPopup ] = useState(false);
+
+    useEffect( _ => {
+        if( addItemCall === 'addSocial' ) addNewSocialEvent();
+    }, [ addItemCall ]);
 
     const addToList = (obj) => {
         setSocialArr(oldArr => ([

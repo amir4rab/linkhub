@@ -8,6 +8,8 @@ import SettingsContent from './settingsContent/settingsContent';
 function UserSettings({ queries, userData }) {
     const [ activeSection, setActiveSection ] = useState(queries.a !== undefined ? queries.a : 'profile');
     const [ action, setAction ] = useState(queries.event !== undefined ? queries.event : null);
+    console.log(`action: ${action} - activeSection: ${activeSection}`);
+
     return (
         <div className={ classes.userSettings }>
             <h1 className={ classes.title }>
@@ -21,7 +23,12 @@ function UserSettings({ queries, userData }) {
                     />
                 </div>
                 <div className={ classes.rightSide }>
-                    <SettingsContent userData={ userData } setAction={ setAction } activeSection={ activeSection } action={ action }/>
+                    <SettingsContent 
+                        userData={ userData } 
+                        setAction={ setAction } 
+                        activeSection={ activeSection } 
+                        action={ action }
+                    />
                 </div>
             </div>
         </div>
