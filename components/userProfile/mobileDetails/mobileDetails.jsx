@@ -4,7 +4,6 @@ import classes from './mobileDetails.module.scss';
 import SocialLink from '../socialLink/socialLink';
 
 function MobileDetails({ userData, activeTab, isOwner, color }) {
-    console.log(userData.socials)
 
     return (
         <div className={ classes.mobileDetails }>

@@ -61,6 +61,13 @@ function UserProfile({ userData, isOwner }) {
                             >
                                 about
                             </button>
+                            <button
+                                className={ classes.btn }
+                            >
+                                <Link href='/profile/settings'>
+                                    Edit profile
+                                </Link>
+                            </button>
                         </div>
                     </div>
                 }

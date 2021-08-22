@@ -68,6 +68,9 @@ function SettingsContent({ userData, activeSection, action }) {
                 setScrolledTo('profile')
                 break;
             }
+            default: {
+                break;
+            }
         }
     }, [ scrolledTo, setScrolledTo, activeSection ]);
 
