@@ -1,9 +1,8 @@
 @import './../../styles/styles';
 
 .userSettings {
-    max-width: $desktopMaxWidth;
-    width: $desktopWidth;
-    padding: 7.5vh 0;
+    width: 100%;
+    padding: 5vh 2rem;
     margin: auto;
     .title{
         text-transform: capitalize;
@@ -16,19 +15,43 @@
         align-items: flex-start;
         align-content: center;
         .leftSide{
-            width: 27.5%;
-            height: 10rem;
-            // background: green;
-            // width: 30%;
-            // background: $black-1;
-            position: -webkit-sticky;
-            position: sticky;
-            top: 2rem;
-            margin-top: 2rem;
+            display: none;
         }
         .rightSide{
-            width: 67.5%;
+            width: 100%;
             margin-left: auto;
+        }
+    }
+}
+
+@include for-desktop-up {
+    .userSettings {
+        max-width: $desktopMaxWidth;
+        width: $desktopWidth;
+        padding: 7.5vh 0;
+        margin: auto;
+        .title{
+            text-transform: capitalize;
+            padding-bottom: 1rem;
+        }
+        // background: #000060cb;
+        .content{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            align-content: center;
+            .leftSide{
+                width: 27.5%;
+                height: 10rem;
+                display: block;
+                position: sticky;
+                top: 2rem;
+                margin-top: 2rem;
+            }
+            .rightSide{
+                width: 67.5%;
+                margin-left: auto;
+            }
         }
     }
 }

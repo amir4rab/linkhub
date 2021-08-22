@@ -16,7 +16,10 @@
         padding-right: .75rem;
     }
     .main{
-        .title{
+        .dTitle{
+            display: none;
+        }
+        .mTitle{
             font-weight: 500;
         }
     }
@@ -44,6 +47,20 @@
             }
             &:active {
                 background-color: $black-0;
+            }
+        }
+    }
+}
+
+@include for-desktop-up {
+    .socialItem{
+        .main{
+            .dTitle{
+                display: block;
+                font-weight: 500;
+            }
+            .mTitle{
+                display: none;
             }
         }
     }

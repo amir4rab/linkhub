@@ -1,7 +1,7 @@
 @import '../../styles/styles';
 
+
 .socialMediaPopup {
-    // display: block;
     position: fixed;
     top: 0;
     left: 0;
@@ -15,8 +15,9 @@
     align-content: center;
     z-index: 100 ;
     .inner {
-        width: 50%;
-        height: 50%;
+        width: 80%;
+        height: 60%;
+        margin-bottom: 10rem;
         background: $black-1;
         border-radius: .4rem;
         position: relative;
@@ -37,6 +38,16 @@
             &:active{
                 color: darken( $light-grey-0, 15 );
             }
+        }
+    }
+}
+
+@include for-desktop-up {
+    .socialMediaPopup {
+        .inner {
+            width: 50%;
+            height: 50%;
+            margin-bottom: 0rem;
         }
     }
 }

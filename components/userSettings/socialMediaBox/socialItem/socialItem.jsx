@@ -10,8 +10,11 @@ function SocialItem({ data, deleteItem }) {
                 <Image src={ socialLogo(data.name).light } alt={`logo of ${data.name}`}/>
             </div>
             <div className={ classes.main }>
-                <p className={ classes.title }>
+                <p className={ classes.dTitle }>
                     { socialLink(data.name, data.id).path }
+                </p>
+                <p className={ classes.mTitle }>
+                    @{ data.id }
                 </p>
             </div>
             <div className={ classes.editBox }>
