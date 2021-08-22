@@ -4,7 +4,7 @@
     width: 100vw;
     .mobileMenuBtn{
         z-index: 100;
-        position: absolute;
+        position: fixed;
         top: 2rem;
         right: 2rem;
         width: 2rem;
@@ -12,11 +12,16 @@
         background: transparent;
         font-size: 2rem;
         border-radius: 50%;
+        padding: 0;
         border: none;
         display: flex;
         justify-content: center;
         align-items: center;
         align-content: center;
+        .imgDark, .imgLight{
+            display: none;
+            z-index: 100;
+        }
     }
     .mobileMenuOverlay{
         z-index: 100;

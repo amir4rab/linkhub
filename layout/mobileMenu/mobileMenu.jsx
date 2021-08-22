@@ -1,8 +1,11 @@
 import classes from './mobileMenu.module.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import mobileMenuIcon from './../../public/icons/dark/mobileMenuIcon.svg';
+import mobileMenuIconDark from './../../public/icons/dark/mobileMenuIcon.svg';
+import mobileMenuIconLight from './../../public/icons/light/mobileMenuIcon.svg';
+
 import Image from 'next/image';
+import MobileMenuOptions from './mobileMenuOptions/mobileMenuOptions';
 
 const overlayVariants = {
     'hidden': {
@@ -19,16 +22,33 @@ const overlayVariants = {
     },
 };
 
-function MobileMenu() {
+const findTheme = (router) => {
+    if ( router.route.includes('/u/') || ( router.route.includes('/profile') && !router.route.includes('settings')) ){
+        return 'dark';
+    } else {
+        return 'light' 
+    }
+}
+
+function MobileMenu({ router }) {
     const [ overlayState, setOverlayState ] = useState(false);
-    const [ modalVisibility, setMoadlVisibility ] = useState(false);
+    const [ modalVisibility, setModalVisibility ] = useState(false);
+    const [ imgColor, setImgColor ] = useState(findTheme(router));
+
+    useEffect(() => {
+        setImgColor(findTheme(router));
+    }, [ setImgColor, router ]);
+
+    useEffect(() => {
+        setOverlayState(false)
+    }, [ router.route ]);
 
     const toggleModal = (e) => 
-        e === 'hidden' ? setMoadlVisibility(false) : null;
+        e === 'hidden' ? setModalVisibility(false) : null;
 
     const showModal = ـ => { 
         setOverlayState(true);
-        setMoadlVisibility(true);
+        setModalVisibility(true);
     }
 
     return (
@@ -36,8 +56,32 @@ function MobileMenu() {
             <button 
                 onClick={ _ => showModal() }
                 className={ classes.mobileMenuBtn }
+                style={{
+                    display: imgColor === 'dark' ? 'block' : 'none'
+                }}
             >
-                <Image src={ mobileMenuIcon } width="100%" height="100%" alt="mobileMenuIcon" />
+                <Image 
+                    className={ classes.imgDark } 
+                    src={ mobileMenuIconDark } 
+                    width="100%" 
+                    height="100%" 
+                    alt="mobileMenuIcon"
+                />
+            </button>
+            <button 
+                onClick={ _ => showModal() }
+                className={ classes.mobileMenuBtn }
+                style={{
+                    display: imgColor === 'light' ? 'block' : 'none'
+                }}
+            >
+                <Image 
+                    className={ classes.imgLight } 
+                    src={ mobileMenuIconLight } 
+                    width="100%" 
+                    height="100%"
+                    alt="mobileMenuIcon"
+                />
             </button>
             {
                 modalVisibility ?
@@ -48,9 +92,7 @@ function MobileMenu() {
                     animate={ overlayState ? 'visible': 'hidden' }
                     onAnimationComplete= { toggleModal }
                 >
-                    <button onClick={ _ => setOverlayState(false) }>
-                        close
-                    </button>
+                    <MobileMenuOptions closeModal={ _ => setOverlayState(false) } modalIsOpen={ modalVisibility } />
                 </motion.div> : null
             }
         </div>
