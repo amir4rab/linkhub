@@ -1,5 +1,5 @@
-// import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import Head from 'next/head';
 import classes from './userSettings.module.scss';
 
 import SettingsNavbar from './settingsNavbar/settingsNavbar';
@@ -10,6 +10,9 @@ function UserSettings({ queries, userData }) {
     const [ action, setAction ] = useState(queries.event !== undefined ? queries.event : null);
     return (
         <div className={ classes.userSettings }>
+            <Head>
+                <title>profile settings</title>
+            </Head>
             <h1 className={ classes.title }>
                 settings
             </h1>

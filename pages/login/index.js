@@ -1,9 +1,17 @@
+import Head from 'next/head';
 import { getSession, signIn } from 'next-auth/client';
 import classes from './loginPage.module.scss';
 
 function LoginPage() {
     return (
         <div className={ classes.loginPage }>
+            <Head>
+                <title>Login</title>
+                <meta 
+                    name="description" 
+                    content="singin or login to linkhub" 
+                />
+            </Head>
             <h1 className={ classes.title }>
                 Login
             </h1>
@@ -28,6 +36,7 @@ export const getServerSideProps = async (context) => {
     if( session !== null ) return {
         redirect: {
             destination: '/profile',
+            parament: false,
         },
     }
 

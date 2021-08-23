@@ -1,6 +1,9 @@
 import { useState } from 'react';
+
+import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import { getClassByIndex } from './../../libs/themeManager/themeManager';
 
 import classes from './userProfile.module.scss';
@@ -13,6 +16,13 @@ function UserProfile({ userData, isOwner }) {
     const [ activeTab, setActiveTab ] = useState(0);
     return (
         <div className={ getClassByIndex(userData.profile.bg, classes) }>
+            <Head>
+                <title>{ userData.profile.fullName } profile</title>
+                <meta 
+                    name="description" 
+                    content={ userData.profile.about !== null ? userData.profile.about : `link hub of ${userData.profile.fullName}` } 
+                />
+            </Head>
             <div className={ classes.header }>
                 <div className={ classes.head }>
                     <div className={ classes.image }>
