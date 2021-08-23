@@ -1,0 +1,28 @@
+@import '../../styles/styles';
+
+.docHelper {
+    width: 100%;
+    padding: 10vh 2rem;
+    .title{
+        font-weight: 600;
+        font-size: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+    .selectedItem{
+        margin-top: 1rem;
+    }
+}
+
+@include for-desktop-up {
+    .docHelper {
+        @include alignForDesktop;
+        .title{
+            font-weight: 600;
+            font-size: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+        .selectedItem{
+            margin-top: 1rem;
+        }
+    }    
+}

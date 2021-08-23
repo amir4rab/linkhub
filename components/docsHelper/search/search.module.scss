@@ -1,0 +1,50 @@
+@import '../../../styles/styles';
+
+.searchComponent {
+    .input {
+        background-color: $black-1;
+        border: none;
+        width: 100%;
+        color: $light-grey-0;
+        text-align: center;
+        padding: .4rem 1rem;
+    }
+    position: relative;
+    .resultBox {
+        top: 100%;
+        left: 0;
+        position: absolute;
+        width: 100%;
+        max-height: 25vh;
+        overflow-y: scroll;
+        .item {
+            display: block;
+            width: 100%;
+            border-radius: 0;
+            background-color: lighten( $black-1, 5 );
+            color: $light-grey-0;
+            transition: .3s ease-in-out background-color;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .image, .text{
+                display: inline;
+            }
+            .text{
+                margin-left: 1rem;
+            }
+            &:hover{
+                cursor: pointer;
+            }
+            &:hover, &:focus {
+                background-color: lighten( $black-1, 10 );
+            }
+            &:active {
+                background-color: lighten( $black-1, 12.5 );
+            }
+            &:not(:last-child) {
+                border-bottom: .1rem solid lighten( $black-1, 7.5 );
+            }
+        }
+    }
+}

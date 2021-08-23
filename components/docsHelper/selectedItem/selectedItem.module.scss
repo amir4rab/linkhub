@@ -1,0 +1,44 @@
+@import '../../../styles/styles';
+
+.selectedItem{
+    padding-top: 2rem;
+    .title{
+        // font-weight: 400;
+        font-size: 1.25rem;
+        font-weight: 600;
+        padding-bottom: .75rem;
+    }
+    .guide{
+        line-height: 200%;
+        padding: 1rem 0;
+    }
+    .helper{
+        padding-top: 1rem;
+        .subtitle{
+            font-weight: 600;
+            // font-weight: 400;
+            margin-bottom: .5rem;
+            padding-right: .75rem;
+        }
+        .input{
+            background: $black-1;
+            border: none;
+            padding: .4rem 1rem;
+            width: 100%;
+            color: $light-grey-0;
+            margin-bottom: .25rem;
+        }
+        .inputSubText{
+            font-size: .8rem;
+            opacity: .8;
+            padding-bottom: .75rem;
+        }
+        .helpText{
+            line-height: 200%;
+            a{
+                font-weight: 600;
+                text-decoration: underline;
+            }
+        }
+    }
+}

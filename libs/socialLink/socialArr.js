@@ -49,6 +49,8 @@ export const dataArr = [
         'path': (value) => `https://open.spotify.com/artist/${value}`,
         'darkLogo': spotifyDarkLogo,
         'lightLogo': spotifyLightLogo,
+        'guide': `simply go to your profile page on spotfy [web player](https://open.spotify.com/), the long string at the end is your id.
+        for example, at this url "https://open.spotify.com/artist/3luonLzvSOxdU8ytCaEIK8" the artist id is "3luonLzvSOxdU8ytCaEIK8".`,
     },
     {
         'name': 'twitter',
@@ -56,6 +58,8 @@ export const dataArr = [
         'path': (value) => `https://twitter.com/${value}`,
         'darkLogo': twitterDarkLogo,
         'lightLogo': twitterLightLogo,
+        'guide': `if your are using twitter website, simply go to your profile, the string after "https://twitter.com/" is your id.
+        for example, in this url "https://twitter.com/BernieSanders", "BernieSanders" is the twitter id. in case you are using twitters mobile application, simply go to "Settings and privacy", "Account", your id is your username.`,
     },
     {
         'name': 'vercel',
@@ -63,6 +67,7 @@ export const dataArr = [
         'path': (value) => `https://${value}.vercel.app`,
         'darkLogo': vercelDarkLogo,
         'lightLogo': vercelLightLogo,
+        'guide': `go to your projects dashboard, find your project domain ( only vercel subdomains are supported for now ), use the string before "vercel.app" for your social media id. for example, if this is your domain "portfolio-netlifycms.vercel.app", you should use "portfolio-netlifycms" as your id.`,
     },
     {
         'name': 'vk',
@@ -70,6 +75,7 @@ export const dataArr = [
         'path': (value) => `https://vk.com/${value}`,
         'darkLogo': vkDarkLogo,
         'lightLogo': vkLightLogo,
+        'guide': null,
     },
     {
         'name': 'whatsapp',
@@ -77,13 +83,15 @@ export const dataArr = [
         'path': (value) => `https://wa.me/${value}`,
         'darkLogo': whatsappDarkLogo,
         'lightLogo': whatsappLightLogo,
+        'guide': `use your phone number as your id, do not include "+",  and white spaces, for more guide checkout this https://faq.whatsapp.com/iphone/how-to-link-to-whatsapp-from-a-different-app/?lang=en on Whatsapp's website. for example, if this is your number "+001-(555)1234567" your id should be like this, "15551234567".`,
     },
     {
         'name': 'youtube',
-        'schema': `https://www.youtube.com/c/$VALUE`,
-        'path': (value) => `https://www.youtube.com/c/${value}`,
+        'schema': `https://www.youtube.com/user/$VALUE`,
+        'path': (value) => `https://www.youtube.com/user/${value}`,
         'darkLogo': youtubeDarkLogo,
         'lightLogo': youtubeLightLogo,
+        'guide': `go to your youtube profile on youtube website,  the string after the "https://www.youtube.com/user/" is your id. for example on this url "https://www.youtube.com/user/JoeDelaneyy" the id is "JoeDelaneyy".`,
     },
     {
         'name': 'telegram',
@@ -91,6 +99,7 @@ export const dataArr = [
         'path': (value) => `https://t.me/${value}`,
         'darkLogo': telegramDarkLogo,
         'lightLogo': telegramLightLogo,
+        'guide': `for ios: go to "Settings", touch the "Edit" button on the top right of the screen, your id is your username without the "@". and for android: go to "Settings", your id is your username without the "@",`,
     },
     {
         'name': 'tiktok',
@@ -98,6 +107,7 @@ export const dataArr = [
         'path': (value) => `https://www.tiktok.com/@${value}`,
         'darkLogo': tiktokDarkLogo,
         'lightLogo': tiktokLightLogo,
+        'guide': null,
     },
     {
         'name': 'twitch',
@@ -105,6 +115,7 @@ export const dataArr = [
         'path': (value) => `https://www.twitch.tv/${value}`,
         'darkLogo': twitchDarkLogo,
         'lightLogo': twitchLightLogo,
+        'guide': null,
     },
     {
         'name': 'behance',
@@ -112,6 +123,7 @@ export const dataArr = [
         'path': (value) => `https://www.behance.net/${value}`,
         'darkLogo': behanceDarkLogo,
         'lightLogo': behanceLightLogo,
+        'guide': null,
     },
     {
         'name': 'codepen',
@@ -119,6 +131,7 @@ export const dataArr = [
         'path': (value) => `https://codepen.io/${value}`,
         'darkLogo': codepenDarkLogo,
         'lightLogo': codepenLightLogo,
+        'guide': null,
     },
     {
         'name': 'codesandbox',
@@ -126,6 +139,7 @@ export const dataArr = [
         'path': (value) => `https://codesandbox.io/u/${value}`,
         'darkLogo': codesandboxDarkLogo,
         'lightLogo': codesandboxLightLogo,
+        'guide': null,
     },
     {
         'name': 'dribbble',
@@ -133,6 +147,7 @@ export const dataArr = [
         'path': (value) => `https://dribbble.com/${value}`,
         'darkLogo': dribbleDarkLogo,
         'lightLogo': dribbleLightLogo,
+        'guide': null,
     },
     {
         'name': 'facebook',
@@ -140,6 +155,7 @@ export const dataArr = [
         'path': (value) => `https://facebook.com/${value}`,
         'darkLogo': facebookDarkLogo,
         'lightLogo': facebookLightLogo,
+        'guide': null,
     },
     {
         'name': 'instagram',
@@ -147,6 +163,7 @@ export const dataArr = [
         'path': (value) => `https://instagram.com/${value}`,
         'darkLogo': instagramDarkLogo,
         'lightLogo': instagramLightLogo,
+        'guide': null,
     },
     {
         'name': 'linkedin',
@@ -154,6 +171,7 @@ export const dataArr = [
         'path': (value) => `https://www.linkedin.com/in/${value}`,
         'darkLogo': linkedinDarkLogo,
         'lightLogo': linkedinLightLogo,
+        'guide': null,
     },
     {
         'name': 'netlify',
@@ -161,6 +179,7 @@ export const dataArr = [
         'path': (value) => `https://${value}.netlify.app`,
         'darkLogo': netlifyDarkLogo,
         'lightLogo': netlifyLightLogo,
+        'guide': null,
     },
     {
         'name': 'aparat',
@@ -168,6 +187,7 @@ export const dataArr = [
         'path': (value) => `https://www.aparat.com/${value}`,
         'darkLogo': aparatDarkLogo,
         'lightLogo': aparatLightLogo,
+        'guide': null,
     },
     {
         'name': 'snapchat',
@@ -175,6 +195,7 @@ export const dataArr = [
         'path': (value) => `https://www.snapchat.com/add/${value}`,
         'darkLogo': snapchatDarkLogo,
         'lightLogo': snapchatLightLogo,
+        'guide': null,
     },
     {
         'name': 'soundcloud',
@@ -182,6 +203,7 @@ export const dataArr = [
         'path': (value) => `https://soundcloud.com/${value}`,
         'darkLogo': soundcloudDarkLogo,
         'lightLogo': soundcloudLightLogo,
+        'guide': null,
     },
 ];
 
@@ -201,4 +223,11 @@ export const socialLink = ( socialMediaName, value ) => {
         'schema': item.schema,
         'path': item.path(value)
     }
+}
+
+export const searchSocialArr = ( value = null ) => {
+    if ( value === '' || value === null ) return dataArr;
+    
+    const res = dataArr.filter(item => item.name.includes(value));
+    return res;
 }
