@@ -44,21 +44,25 @@ const handler = async (req, res) => {
         res.end();
         return;
     };
-
     let errorBody = 'something went wrong!';
     const session = await getSession({ req });
     
+    // checking if user is logged in or not
     if( session && req.body.length !== 0 ) {
         try {
+            // getting request body 
             const reqBody = await JSON.parse(req.body);
-            // console.log(reqBody);
-
+            
+            // connecting to database
             const client = await dbConnect();
             const db = client.db();
             const collection = db.collection('users');
 
+            // getting users previous data from database
             const filter = { email: session.user.email };
             const userPervData = await collection.findOne(filter);
+            
+            // skeleton of data object 
             const updateDocument = {
                 $set: {
                     'profile': {
@@ -67,9 +71,15 @@ const handler = async (req, res) => {
                         'pic': userPervData.profile.pic,
                     }
                 }
-            }
+            };
 
+            // validating id section 
             if ( reqBody.id !== null ) {
+                if ( id === 'test' ) {
+                    errorBody = "that id, isn't available";
+                    throw(new Error(errorBody));
+                };
+                
                 // check if id is unique
                 const userByThatId = await collection.findOne({ id: reqBody.username });
                 if( userByThatId === undefined ) {
@@ -80,6 +90,7 @@ const handler = async (req, res) => {
                 }
             }
 
+            // validating about section 
             if( reqBody.profile.about !== null ) {
                 if ( looseValidateInput(reqBody.profile.about) ) {
                     updateDocument.$set.profile.about = reqBody.profile.about;
@@ -89,6 +100,7 @@ const handler = async (req, res) => {
                 }
             }
 
+            // validating profile location section
             if ( reqBody.profile.location !== null ) {
                 const locationSplitted = reqBody.profile.location.split(' - ');
                 if ( validateInput(locationSplitted[0]) && validateInput(locationSplitted[1]) ){
@@ -99,6 +111,7 @@ const handler = async (req, res) => {
                 }
             }
 
+            // validating bg section ( theme ) 
             if ( reqBody.profile.bg !== null ) {
                 if ( isNum(reqBody.profile.bg) ){
                     updateDocument.$set.profile.bg = reqBody.profile.bg;
@@ -108,7 +121,7 @@ const handler = async (req, res) => {
                 }
             }
 
-            // validating social links 
+            // validating social links  section
             if( reqBody.socials !== null ) {
                 try {
                     const validatedArr = validateSocials(reqBody.socials, errorBody);
@@ -119,7 +132,7 @@ const handler = async (req, res) => {
                 }
             }
 
-            const results = await collection.updateOne(filter,updateDocument);
+            await collection.updateOne(filter,updateDocument);
 
             res.status(200).json({
                 res: 'successful operation!'
@@ -136,7 +149,7 @@ const handler = async (req, res) => {
         res.status(401).json({
             err: 'not authenticated!'
         })
-    }
+    };
     res.end();
 };
 

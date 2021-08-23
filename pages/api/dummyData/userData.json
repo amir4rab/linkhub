@@ -1,23 +1,28 @@
 {
-    "email": "test@test.com",
-    "id": "jackJackson",
-    "socials": [
-        {
-            "type": "instagram",
-            "id": "jackJackson",
-            "displayedText": false
+    "email":"test@test.test",
+    "id":"test",
+    "socials":[
+        {   "name":"facebook",
+            "id":"jack",
+            "instance":"facebook-581",
+            "label":"my facebook page"
         },
-        {
-            "type": "telegram",
-            "id": "jackJackson",
-            "displayedText": "my telegram"
+        {   "name":"twitter",
+            "id":"jack",
+            "instance":"twitter-427",
+            "label":false
+        },
+        {   "name":"dribbble",
+            "id":"jack",
+            "instance":"dribbble-389",
+            "label":false
         }
     ],
-    "profile": {
+    "profile":{
         "bg": 0,
-        "fullName": "jack jackson",
-        "about": "freelancer developer",
-        "location": "Germany - frankfurt",
-        "pic": "https://randomuser.me/api/portraits/women/27.jpg"
+        "fullName":"jack muller",
+        "pic":"https://lh3.googleusercontent.com/a-/AOh14GgSb92vGCgtTAqjp95Pb4tk4x97lrSmn-vcXBa8=s96-c",
+        "about":"a front end developer.",
+        "location":"germany - berlin"
     }
 }
