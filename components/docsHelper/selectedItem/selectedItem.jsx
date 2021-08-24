@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import classes from './selectedItem.module.scss';
 
-const genericGuide = ({ name }) => ``;
+const genericGuide = (obj) => `go to your profile on ${obj.name} website, the string after "${obj.schema.replace('$VALUE', '')}" is your id.`;
 
 function SelectedItem({ dataObj }) {
     const [ idValue, setIdValue ] = useState('');
@@ -13,7 +13,7 @@ function SelectedItem({ dataObj }) {
                 <p className={ classes.guide }>
                     {
                         dataObj.guide !== null ?
-                        dataObj.guide : genericGuide(dataObj.name)
+                        dataObj.guide : genericGuide(dataObj)
                     }
                 </p>
                 <div className={ classes.helper }>

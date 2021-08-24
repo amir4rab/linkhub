@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import classes from './search.module.scss'
 
@@ -6,10 +6,30 @@ function SearchComponent({ searchSocialArr ,setChosenValue, activeItem }) {
     const [ dataArr, setDataArr ] = useState([]);
     const inputRef = useRef();
 
+    // checking if the component is still mounted
+    let mounted = useRef(true);
+    useEffect( _ => {
+        mounted.current = true;
+        return () => {
+            mounted.current = false;
+        };
+    }, [])
+
     const setActiveItem = (item) => {
         setDataArr([]);
         inputRef.current.value = '';
         setChosenValue(item);
+    }
+
+    const focused = () => {
+        setDataArr(searchSocialArr());
+    }
+    const blurred = () => {
+        setTimeout( _ => {
+            console.log('hello', mounted.current)
+            if ( !mounted.current ) return;
+            setDataArr([]);
+        }, 150)
     }
 
     return (
@@ -20,6 +40,8 @@ function SearchComponent({ searchSocialArr ,setChosenValue, activeItem }) {
                 placeholder={ activeItem.name } 
                 ref={ inputRef }
                 onChange={ e => setDataArr(searchSocialArr(e.target.value)) } 
+                onFocus={focused}
+                onBlur={blurred}
             />
             <div
                 className={ classes.resultBox }
