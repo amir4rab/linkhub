@@ -61,6 +61,17 @@ function MobileMenuOptions({ closeModal, modalIsOpen }) {
             <motion.div
                 className={ classes.linkBox }
                 variants={ variants }
+                custom={1}
+                initial='hidden'
+                animate={ modalIsOpen ? 'visible' : 'hidden' }
+            >
+                <Link href='/doc'>
+                    doc
+                </Link>
+            </motion.div>
+            <motion.div
+                className={ classes.linkBox }
+                variants={ variants }
                 custom={3}
                 initial='hidden'
                 animate={ modalIsOpen ? 'visible' : 'hidden' }

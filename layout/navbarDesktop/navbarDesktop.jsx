@@ -20,8 +20,8 @@ function NavbarDesktop({ router }) {
                 </h3>
                 <ul className={ classes.links }>
                     <li className={ classes.link }>
-                        <Link href='/'>
-                            settings
+                        <Link href='/doc'>
+                            doc
                         </Link>
                     </li>
                     <li className={ classes.link }>
