@@ -2,3 +2,10 @@
 
 $desktopMaxWidth: 1200px;
 $desktopWidth: 80%;
+
+@mixin alignForDesktop {
+    padding: 10vh 0 0 0;
+    width: $desktopWidth;
+    max-width: $desktopMaxWidth;
+    margin: 0 auto;
+}
