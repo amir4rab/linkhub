@@ -1,6 +1,7 @@
 // import userData from './userData.json';
 import { getSession } from 'next-auth/client';
 import { dbConnect } from '../../../libs/mongoDb/mongoDb';
+import SocialItem from '../../../libs/userGen/socialItem';
 import { validateInput, validateSocialArrItem, looseValidateInput, isNum } from '../../../libs/validateInput/validateInput';
 
 const validateSocials = (dataArr, errorBody) => dataArr.map(item => {
@@ -15,7 +16,7 @@ const validateSocials = (dataArr, errorBody) => dataArr.map(item => {
         'instance': item.instance,
         'label': item.label
     });
-})
+});
 
 const checkIfItemIsValid = (dataObj) => {
     const objKeys = Object.keys(dataObj);
@@ -23,7 +24,6 @@ const checkIfItemIsValid = (dataObj) => {
     if( objKeys.length !== 4 ) return false;
     let allItemsAreValid = true;
     objKeys.every(item => {
-        console.log(dataObj[item]);
         if ( typeof(dataObj[item]) === 'boolean' ) {
             return true;
         } else if ( typeof(dataObj[item]) === 'string' && validateSocialArrItem(dataObj[item]) ) {
@@ -48,7 +48,7 @@ const handler = async (req, res) => {
     const session = await getSession({ req });
     
     // checking if user is logged in or not
-    if( session && req.body.length !== 0 ) {
+    if( session && req.body.length !== 0 ) { // into this if, if the user inputted stuff and user is in active session.
         try {
             // getting request body 
             const reqBody = await JSON.parse(req.body);
@@ -63,27 +63,19 @@ const handler = async (req, res) => {
             const userPervData = await collection.findOne(filter);
             
             // skeleton of data object 
-            const updateDocument = {
-                $set: {
-                    'profile': {
-                        'bg': userPervData.profile.bg,
-                        'fullName': userPervData.profile.fullName,
-                        'pic': userPervData.profile.pic,
-                    }
-                }
-            };
+            const updateDocument = new SocialItem(userPervData);
 
             // validating id section 
             if ( reqBody.id !== null ) {
-                if ( id === 'test' ) {
+                if ( reqBody.id === 'test' ) {
                     errorBody = "that id, isn't available";
                     throw(new Error(errorBody));
                 };
                 
                 // check if id is unique
                 const userByThatId = await collection.findOne({ id: reqBody.username });
-                if( userByThatId === undefined ) {
-                    updateDocument.$set.id = reqBody.id;
+                if( userByThatId === undefined && validateInput(reqBody.id) ) {
+                    updateDocument.updateItem( 'id', reqBody.id );
                 } else {
                     errorBody = "that id, isn't available";
                     throw(new Error(errorBody));
@@ -93,7 +85,7 @@ const handler = async (req, res) => {
             // validating about section 
             if( reqBody.profile.about !== null ) {
                 if ( looseValidateInput(reqBody.profile.about) ) {
-                    updateDocument.$set.profile.about = reqBody.profile.about;
+                    updateDocument.updateItem( 'about', reqBody.profile.about );
                 } else {
                     errorBody = 'false value for about';
                     throw(new Error(errorBody));
@@ -104,7 +96,7 @@ const handler = async (req, res) => {
             if ( reqBody.profile.location !== null ) {
                 const locationSplitted = reqBody.profile.location.split(' - ');
                 if ( validateInput(locationSplitted[0]) && validateInput(locationSplitted[1]) ){
-                    updateDocument.$set.profile.location = reqBody.profile.location;
+                    updateDocument.updateItem( 'location' , reqBody.profile.location);
                 } else {
                     errorBody = 'false values for location';
                     throw(new Error(errorBody));
@@ -114,7 +106,7 @@ const handler = async (req, res) => {
             // validating bg section ( theme ) 
             if ( reqBody.profile.bg !== null ) {
                 if ( isNum(reqBody.profile.bg) ){
-                    updateDocument.$set.profile.bg = reqBody.profile.bg;
+                    updateDocument.updateItem( 'bg', reqBody.profile.bg );
                 } else {
                     errorBody = 'false value for bg';
                     throw(new Error(errorBody));
@@ -125,20 +117,22 @@ const handler = async (req, res) => {
             if( reqBody.socials !== null ) {
                 try {
                     const validatedArr = validateSocials(reqBody.socials, errorBody);
-                    updateDocument.$set.socials = validatedArr;
+                    updateDocument.updateItem( 'socials', validatedArr );
                 } catch {
                     errorBody = 'error in validating the social arr!';
                     throw(new Error(errorBody));
                 }
             }
 
-            await collection.updateOne(filter,updateDocument);
-
+            await collection.updateOne(filter,{ $set: updateDocument.getObj() });
+            client.close();
             res.status(200).json({
-                res: 'successful operation!'
+                res: 'successful operation!',
+                newObj: updateDocument.getObj()
             });
         } catch {
             // catching error in main
+            client.close();
             console.log('into catch', errorBody)
             res.status(304).json({
                 err: errorBody
