@@ -26,7 +26,6 @@ function SearchComponent({ searchSocialArr ,setChosenValue, activeItem }) {
     }
     const blurred = () => {
         setTimeout( _ => {
-            console.log('hello', mounted.current)
             if ( !mounted.current ) return;
             setDataArr([]);
         }, 150)

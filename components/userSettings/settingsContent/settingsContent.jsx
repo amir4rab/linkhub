@@ -42,8 +42,6 @@ const semiCheckBeforeStore = ( value, storingObjFn, errorObjFn, maxLength = 150 
 function SettingsContent({ userData, activeSection, action }) {
     const [ localUserData, setLocalUserData ] = useState(userData);
 
-
-
     // scrolling to active element //
     const profileRef = useRef();
     const settingsRef = useRef();
@@ -157,17 +155,7 @@ function SettingsContent({ userData, activeSection, action }) {
         )
             .then(res => res.json())
             .then(json => {
-                console.log(json);
-                setLocalUserData({
-                    'id': username,
-                    'profile': {
-                        'about':  about,
-                        'location': location,
-                        'fullName': fullName,
-                        'bg': bg
-                    },
-                    'socials': socialArr
-                })
+                setLocalUserData(json.newObj)
                 setDataChanged(false);
                 setIsLoading(false);
             })
