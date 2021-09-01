@@ -2,7 +2,7 @@ import { MongoClient } from 'mongodb';
 import { userGen } from './../userGen/userGen';
 
 export const dbConnect = async () => {
-    const res = await MongoClient.connect('mongodb+srv://localhost:R32sB&SY4hucVEvVui^dRb9J@cluster0.ws4lo.mongodb.net/testApp?retryWrites=true&w=majority');
+    const res = await MongoClient.connect(process.env.MONGODB_URL);
     return res;
 };
 
