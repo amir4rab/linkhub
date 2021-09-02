@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useSession } from 'next-auth/client';
+import { useRouter } from 'next/router';
 
 import classes from './mobileMenuOptions.module.scss';
 
@@ -21,6 +22,9 @@ const variants = {
 
 function MobileMenuOptions({ closeModal, modalIsOpen }) {
     const [ session, loading ] = useSession();
+    // const router = useRouter();
+
+    // console.log(router.route);
 
     return (
         <div className={ classes.mobileMenuOptions }>
@@ -61,7 +65,7 @@ function MobileMenuOptions({ closeModal, modalIsOpen }) {
             <motion.div
                 className={ classes.linkBox }
                 variants={ variants }
-                custom={1}
+                custom={3}
                 initial='hidden'
                 animate={ modalIsOpen ? 'visible' : 'hidden' }
             >
@@ -72,7 +76,7 @@ function MobileMenuOptions({ closeModal, modalIsOpen }) {
             <motion.div
                 className={ classes.linkBox }
                 variants={ variants }
-                custom={3}
+                custom={4}
                 initial='hidden'
                 animate={ modalIsOpen ? 'visible' : 'hidden' }
             >
