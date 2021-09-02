@@ -1,17 +1,18 @@
 import UserProfile from '../../components/userProfile/userProfile';
 import image from './../../public/images/person.jpeg';
+import dummyData from '../../libs/dummyData';
 
-function TestUser({ userData }) {
+function TestUser() {
     const dataObj = {
-        email: userData.email,
-        id: userData.id,
-        socials: userData.socials,
+        email: dummyData.email,
+        id: dummyData.id,
+        socials: dummyData.socials,
         profile: {
-            bg: userData.profile.bg,
-            fullName: userData.profile.fullName,
+            bg: dummyData.profile.bg,
+            fullName: dummyData.profile.fullName,
             pic: image,
-            about: userData.profile.about,
-            location: userData.profile.location,
+            about: dummyData.profile.about,
+            location: dummyData.profile.location,
         }
     };
     return (
@@ -19,14 +20,6 @@ function TestUser({ userData }) {
             <UserProfile userData={ dataObj } />
         </div>
     )
-}
-
-export const getStaticProps = async _ => {
-    const res = await fetch('http://localhost:3000/api/dummyData');
-    const json = await res.json();
-    return {
-        props: { userData:{ ...json }},
-    }
 }
 
 export default TestUser
