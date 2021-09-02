@@ -49,13 +49,14 @@ const handler = async (req, res) => {
     
     // checking if user is logged in or not
     if( session && req.body.length !== 0 ) { // into this if, if the user inputted stuff and user is in active session.
+        // connecting to database
+        const client = await dbConnect();
+        const db = client.db();
         try {
             // getting request body 
             const reqBody = await JSON.parse(req.body);
             
-            // connecting to database
-            const client = await dbConnect();
-            const db = client.db();
+            // selecting database
             const collection = db.collection('users');
 
             // getting users previous data from database
@@ -73,7 +74,7 @@ const handler = async (req, res) => {
                 };
                 
                 // check if id is unique
-                const userByThatId = await collection.findOne({ id: reqBody.username });
+                const userByThatId = await collection.findOne({ id: reqBody.id });
                 if( userByThatId === undefined && validateInput(reqBody.id) ) {
                     updateDocument.updateItem( 'id', reqBody.id );
                 } else {
