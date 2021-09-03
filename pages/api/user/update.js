@@ -74,9 +74,9 @@ const handler = async (req, res) => {
                 };
                 
                 // check if id is unique
-                const userByThatId = await collection.findOne({ id: reqBody.id });
+                const userByThatId = await collection.findOne({ id: reqBody.id.toLowerCase() });
                 if( userByThatId === undefined && validateInput(reqBody.id) ) {
-                    updateDocument.updateItem( 'id', reqBody.id );
+                    updateDocument.updateItem( 'id', reqBody.id.toLowerCase() );
                 } else {
                     errorBody = "that id, isn't available";
                     throw(new Error(errorBody));
