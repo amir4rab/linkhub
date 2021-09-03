@@ -20,8 +20,6 @@ export const getServerSideProps = async (context) => {
 
     const user = await getUser(session.user.email);
 
-    console.log(user);
-
     return {
         props: { userData: { ...user } },
     }

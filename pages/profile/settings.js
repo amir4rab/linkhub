@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 
 import { getUser } from './../../libs/mongoDb/mongoDb';
-import { getSession, signOut } from 'next-auth/client';
+import { getSession } from 'next-auth/client';
 
 import UserSettings from '../../components/userSettings/userSettings';
 

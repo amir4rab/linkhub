@@ -13,11 +13,17 @@ export const getStaticProps = async (context) => {
     const { username } = context.params;
     const userData = await getUserForClient(username);
 
-    return {
-        props: {
-            userData
-        },
-        revalidate: 1
+    if ( userData !== undefined ) {
+        return {
+            props: {
+                userData
+            },
+            revalidate: 1
+        }
+    } else {
+        return {
+            notFound: true,
+        }
     }
 }
 
