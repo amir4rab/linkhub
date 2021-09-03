@@ -16,14 +16,15 @@ export const getStaticProps = async (context) => {
     return {
         props: {
             userData
-        }
+        },
+        revalidate: 1
     }
 }
 
 export async function getStaticPaths() {
     return {
         paths: [],
-        fallback: 'blocking'
+        fallback: 'blocking',
     };
 }  
 
