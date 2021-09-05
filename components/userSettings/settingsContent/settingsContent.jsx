@@ -3,14 +3,14 @@ import { signOut } from 'next-auth/client';
 import PrimaryBtn from '../../buttons/primaryBtn';
 import SocialMediaBox from '../socialMediaBox/socialMediaBox';
 import classes from './settingsContent.module.scss';
-import { validateInput as validityChecker, looseValidateInput , isNum } from '../../../libs/validateInput/validateInput';
-import { dataChanged as isUserDataChanged, compareUsersSocials, changedItems } from '../../../libs/dataChanged/dataChanged';
+import { validateInput as validityChecker, looseValidateInput } from '../../../libs/validateInput/validateInput';
+import { dataChanged as isUserDataChanged, changedItems } from '../../../libs/dataChanged/dataChanged';
 import LoadingPopup from '../../loadingPopup/loadingPopup';
 import ColorPicker from './colorPicker/colorPicker';
+import DeleteAccountSection from './deleteAccountSection/deleteAccountSection';
 
 const checkBeforeStore = ( value, storingObjFn, errorObjFn, maxLength = 24, isId = false, isLocation = false ) => {
     const type = isId ? 'id' : isLocation ? 'location' : 'default'
-    console.log(type)
     switch(type){
         case 'default': { // check for non id inputs
             if ( validityChecker(value, maxLength) ) {
@@ -329,6 +329,7 @@ function SettingsContent({ userData, activeSection, action }) {
                             sign out
                         </PrimaryBtn>
                     </div>
+                    <DeleteAccountSection userId={ localUserData.id } />
                 </div>
             </div>
         </div>

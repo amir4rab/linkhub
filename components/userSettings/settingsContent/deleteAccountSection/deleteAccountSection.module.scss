@@ -1,0 +1,27 @@
+@import '../../../../styles/styles';
+
+
+.deleteAccountSection {
+    padding: 2rem 0;
+    .label{
+        display: block;
+        padding-bottom: .75rem;
+    }
+    .input{
+        margin-bottom: 2rem;
+    }
+}
+
+@include for-desktop-up {
+    .deleteAccountSection {
+        .inputArea{
+            display: flex;
+            justify-content: space-between;
+        }
+        .input{
+            max-width: 25%;
+            margin-right: auto;
+            margin-bottom: 0;
+        }
+    }
+}
