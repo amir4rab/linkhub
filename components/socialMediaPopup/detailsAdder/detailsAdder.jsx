@@ -13,7 +13,7 @@ function DetailsAdder({ dataArr, data, submitEvent, goBack, closePopup }) {
     const [ idInputError, setIdInputError  ] = useState(false);
     const [ idHasBeenFocused, setIdHasBeenFocused  ] = useState(false);
     useEffect( _ => {
-        setIdInputError(!validateInput(idInputValue));
+        setIdInputError(!validateInput(idInputValue, 24, true));
     }, [ idInputValue, setIdInputError ]);
 
     //** hooks for label input **//

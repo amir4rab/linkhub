@@ -26,4 +26,33 @@ export default class SocialItem {
             "pic": this.pic
         }
     })
-}
+};
+
+export class voidSocialItem {
+    constructor(){
+        this.email = null,
+        this.id = null,
+        this.socials = null,
+        this.bg = null,
+        this.fullName = null,
+        this.about = null,
+        this.location = null,
+        this.pic = null
+    }
+
+    updateItem = (item, value) => {
+        this[item] = value;
+    }
+
+    getObj = () => ({
+        "id": this.id,
+        "socials": this.socials,
+        "profile": {
+            "bg": this.bg,
+            "fullName": this.fullName,
+            "about": this.about,
+            "location": this.location,
+            "pic": this.pic
+        }
+    })
+};

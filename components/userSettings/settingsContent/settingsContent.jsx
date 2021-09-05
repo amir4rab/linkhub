@@ -3,40 +3,63 @@ import { signOut } from 'next-auth/client';
 import PrimaryBtn from '../../buttons/primaryBtn';
 import SocialMediaBox from '../socialMediaBox/socialMediaBox';
 import classes from './settingsContent.module.scss';
-import { validateInput as validityChecker, isNum } from '../../../libs/validateInput/validateInput';
-import { dataChanged as isUserDataChanged, compareUsersSocials } from '../../../libs/dataChanged/dataChanged';
+import { validateInput as validityChecker, looseValidateInput , isNum } from '../../../libs/validateInput/validateInput';
+import { dataChanged as isUserDataChanged, compareUsersSocials, changedItems } from '../../../libs/dataChanged/dataChanged';
 import LoadingPopup from '../../loadingPopup/loadingPopup';
 import ColorPicker from './colorPicker/colorPicker';
 
-const checkBeforeStore = ( value, storingObjFn, errorObjFn, maxLength = 24, isId = false ) => {
-    if ( validityChecker(value, maxLength) ) {
-        errorObjFn('');
-        storingObjFn(value);
-    } else if ( value.length === 0 && !isId ) {
-        errorObjFn('');
-    } else {
-        errorObjFn('false values!');
-    }
+const checkBeforeStore = ( value, storingObjFn, errorObjFn, maxLength = 24, isId = false, isLocation = false ) => {
+    const type = isId ? 'id' : isLocation ? 'location' : 'default'
+    console.log(type)
+    switch(type){
+        case 'default': { // check for non id inputs
+            if ( validityChecker(value, maxLength) ) {
+                errorObjFn('');
+                storingObjFn(value);
+            } else if ( value.length === 0 ) {
+                storingObjFn('');
+                errorObjFn('');
+            }else {
+                errorObjFn('false values!');
+            }
+            break;
+        };
+        case 'id': { // check for id input
+            if ( validityChecker(value, maxLength, true ) ) {
+                errorObjFn('');
+                storingObjFn(value);
+            } else {
+                errorObjFn('false values!');
+            }
+            break;
+        };
+        case 'location': { // check for non id inputs
+            if ( validityChecker(value, maxLength) ) {
+                errorObjFn('');
+                storingObjFn(value);
+            } else if ( value.length === 0 ) {
+                storingObjFn('');
+                errorObjFn('');
+            } else {
+                errorObjFn('false values!');
+            }
+            break;
+        };
+    };
 }
 
-const semiCheckBeforeStore = ( value, storingObjFn, errorObjFn, maxLength = 150 ) => {
-    const innerValidityChecker = ( input, maxLength ) => {
-        const regex = /^[0-9a-zA-Z .  , : ;]+$/g;
-        if ( regex.exec(input) && input.length < maxLength ) {
-            return true;
-        } else {
-            return false;
-        };
-    }
-
-    if ( innerValidityChecker(value, maxLength) ) {
+const semiCheckBeforeStore = ( value, storingObjFn, errorObjFn ) => {
+    if ( looseValidateInput(value.trim()) ) {
         errorObjFn('');
         storingObjFn(value);
     } else if ( value.length === 0 ) {
         errorObjFn('');
+        storingObjFn('');
+        return;
     } else {
         errorObjFn('false values!');
     }
+        
 }
 
 function SettingsContent({ userData, activeSection, action }) {
@@ -99,7 +122,7 @@ function SettingsContent({ userData, activeSection, action }) {
 
     // checking if the data has been changed //
     useEffect( _ => {
-        const location = locationCity.length !== 0 && locationCountry.length !== 0 ? `${locationCountry}-${locationCity}` : null;
+        const location = locationCity.length !== 0 && locationCountry.length !== 0 ? `${locationCountry} - ${locationCity}` : null;
         if(
             isUserDataChanged({
                 id: username,
@@ -136,26 +159,25 @@ function SettingsContent({ userData, activeSection, action }) {
     // making a api call to the backend to submit new values //
     const submitToApi = () => {
         setIsLoading(true);
-        const location = locationCity.length !== 0 && locationCountry.length !== 0 ? `${locationCountry.trim()} - ${locationCity.trim()}` : null;
         fetch(
             '/api/user/update',
             {
-                body: JSON.stringify({
-                    'id': username === localUserData.id ? null : username,
-                    'profile': {
-                        'about': about.length === 0 ? null : about,
-                        'location': location,
-                        'fullName': fullName === localUserData.profile.fullName ? null : fullName,
-                        'bg': bg === localUserData.profile.bg ? null : isNum(bg) ? bg : null
+                body: JSON.stringify(changedItems({
+                    id: username,
+                    profile: {
+                        about,
+                        location,
+                        fullName,
+                        bg,
                     },
-                    'socials': compareUsersSocials(socialArr, localUserData.socials) ? null : socialArr
-                }),
+                    socials: socialArr
+                    }, localUserData)),
                 method: 'PUT'
             }
         )
             .then(res => res.json())
             .then(json => {
-                setLocalUserData(json.newObj)
+                setLocalUserData(json.newObj);
                 setDataChanged(false);
                 setIsLoading(false);
             })
@@ -169,7 +191,7 @@ function SettingsContent({ userData, activeSection, action }) {
         <div className={ classes.settingsContent }>
             <LoadingPopup isLoading={ isLoading } />
             <div ref={ profileRef } className={ classes.section }>
-                {/* title area  */}
+                {/* title area */}
                 <div className={ classes.titleArea }>
                     <h3 className={ classes.title }>
                         profile
@@ -182,7 +204,7 @@ function SettingsContent({ userData, activeSection, action }) {
                         : null
                     }
                 </div>
-                {/* username input  */}
+                {/* username input */}
                 <div className={ classes.box }>
                     <h4 className={ classes.subTitle }>
                         username
@@ -194,7 +216,7 @@ function SettingsContent({ userData, activeSection, action }) {
                         onChange={ e => checkBeforeStore( e.target.value, setUsername, setUsernameError, 24, true )}
                     />
                     <p className={ classes.help }>
-                        your username should only includes normal characters(0 to 9, a to z).
+                        your username should only includes normal characters(0 to 9, a to z, and _).
                     </p>
                     {
                         usernameError !== '' ?
@@ -203,7 +225,7 @@ function SettingsContent({ userData, activeSection, action }) {
                         </p> : null
                     }
                 </div>
-                {/* username input  */}
+                {/* name input */}
                 <div className={ classes.box }>
                     <h4 className={ classes.subTitle }>
                         full name
@@ -211,7 +233,7 @@ function SettingsContent({ userData, activeSection, action }) {
                     <input 
                         type="text" 
                         defaultValue={fullName}
-                        onChange={ e => checkBeforeStore( e.target.value, setFullName, setFullNameError, 24, true)}
+                        onChange={ e => checkBeforeStore( e.target.value, setFullName, setFullNameError, 24)}
                     />
                     {
                         fullNameError !== '' ?
@@ -228,7 +250,8 @@ function SettingsContent({ userData, activeSection, action }) {
                     <textarea 
                         defaultValue={ about }
                         placeholder='eg: 24 year old frontend developer, based in berlin.'
-                        onChange={ e => semiCheckBeforeStore( e.target.value, setAbout, setAboutError, 150 )}
+                        // onChange={ e => semiCheckBeforeStore( e.target.value, setAbout, setAboutError )}
+                        onChange={ e => semiCheckBeforeStore( e.target.value.trim(), setAbout, setAboutError )}
                     />
                     <p className={ classes.help }>
                         Max 150 characters!
@@ -254,7 +277,7 @@ function SettingsContent({ userData, activeSection, action }) {
                             name="locationCountry"
                             placeholder="Germany"
                             defaultValue={ locationCountry }
-                            onChange={ e => checkBeforeStore( e.target.value, setLocationCountry, setLocationCountryError )}
+                            onChange={ e => checkBeforeStore( e.target.value, setLocationCountry, setLocationCountryError, 24, false, true )}
                         />
                     </div>
                     <div className={ classes.inputBox }>
@@ -266,7 +289,7 @@ function SettingsContent({ userData, activeSection, action }) {
                             name="locationCity"
                             placeholder="Berlin"
                             defaultValue={ locationCity }
-                            onChange={ e => checkBeforeStore( e.target.value, setLocationCity, setLocationCityError )} 
+                            onChange={ e => checkBeforeStore( e.target.value, setLocationCity, setLocationCityError, 24, false, true )} 
                         />
                         {
                             locationCityError !== '' || locationCountryError !== '' ?

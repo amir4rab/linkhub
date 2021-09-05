@@ -24,14 +24,16 @@ const checkIfItemIsValid = (dataObj) => {
     if( objKeys.length !== 4 ) return false;
     let allItemsAreValid = true;
     objKeys.every(item => {
-        if ( typeof(dataObj[item]) === 'boolean' ) {
+        if ( typeof(dataObj[item]) === 'boolean' ) return true;
+        
+        if ( typeof(dataObj[item]) === 'string' && item !== 'id' && validateSocialArrItem(dataObj[item]) ) {
             return true;
-        } else if ( typeof(dataObj[item]) === 'string' && validateSocialArrItem(dataObj[item]) ) {
+        } else if ( typeof(dataObj[item]) === 'string' && item === 'id' && validateSocialArrItem(dataObj[item], true) ) {
             return true;
-        } else {
-            allItemsAreValid = false;
-            return false;
-        };
+        }
+
+        allItemsAreValid = false;
+        return false;
     })
     return allItemsAreValid;
 };
@@ -83,9 +85,23 @@ const handler = async (req, res) => {
                 }
             }
 
+            // validating name section 
+            if( reqBody.profile.fullName !== null ) {
+                if ( reqBody.profile.fullName.length === 0 ) {
+                    updateDocument.updateItem( 'fullName', null );
+                } else if ( looseValidateInput(reqBody.profile.fullName) ) {
+                    updateDocument.updateItem( 'fullName', reqBody.profile.fullName );
+                } else {
+                    errorBody = 'false value for fullName';
+                    throw(new Error(errorBody));
+                }
+            }
+
             // validating about section 
             if( reqBody.profile.about !== null ) {
-                if ( looseValidateInput(reqBody.profile.about) ) {
+                if ( reqBody.profile.about.length === 0 ) {
+                    updateDocument.updateItem( 'about', null );
+                } else if ( looseValidateInput(reqBody.profile.about) ) {
                     updateDocument.updateItem( 'about', reqBody.profile.about );
                 } else {
                     errorBody = 'false value for about';
@@ -96,7 +112,9 @@ const handler = async (req, res) => {
             // validating profile location section
             if ( reqBody.profile.location !== null ) {
                 const locationSplitted = reqBody.profile.location.split(' - ');
-                if ( validateInput(locationSplitted[0]) && validateInput(locationSplitted[1]) ){
+                if ( locationSplitted[0].trim().length === 0 || locationSplitted[0].trim().length === 0 ) {
+                    updateDocument.updateItem( 'location', null );
+                } else  if ( validateInput(locationSplitted[0] ) && validateInput(locationSplitted[1] ) ){
                     updateDocument.updateItem( 'location' , reqBody.profile.location);
                 } else {
                     errorBody = 'false values for location';
