@@ -15,12 +15,15 @@
     align-content: center;
     z-index: 100 ;
     .inner {
+        overflow-y: scroll;
         width: 80%;
         height: 60%;
         margin-bottom: 10rem;
         background: $black-1;
         border-radius: .4rem;
         position: relative;
+        display: flex;
+        flex-direction: column;
         .exitBtn{
             position: absolute;
             top: 1rem;
@@ -45,6 +48,7 @@
 @include for-desktop-up {
     .socialMediaPopup {
         .inner {
+            overflow-y: auto;
             width: 50%;
             height: 50%;
             margin-bottom: 0rem;

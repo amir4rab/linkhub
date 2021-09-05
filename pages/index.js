@@ -8,7 +8,6 @@ export default function Home() {
       <Head>
         <title>Linkhub</title>
         <meta name="description" content="Connect all of your social medias in one place!" />
-        <meta lang="en" />
         <link rel="icon" href="/favicon.svg" />
       </Head>
 
