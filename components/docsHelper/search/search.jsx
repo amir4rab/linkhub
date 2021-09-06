@@ -33,6 +33,9 @@ function SearchComponent({ searchSocialArr ,setChosenValue, activeItem }) {
 
     return (
         <div className={ classes.searchComponent }>
+            <h4 className={ classes.subTitle }>
+                Search for specific social media.
+            </h4>
             <input 
                 className={ classes.input }
                 type="text" 

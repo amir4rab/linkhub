@@ -1,6 +1,11 @@
 @import '../../../styles/styles';
 
 .searchComponent {
+    .subTitle{
+        font-size: 1.25rem;
+        font-weight: 600;
+        padding-bottom: 1.25rem;
+    }
     .input {
         background-color: $black-1;
         border: none;

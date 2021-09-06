@@ -9,7 +9,7 @@ function DocsHelperComponent() {
     return (
         <div className={ classes.docHelper }>
             <h1 className={ classes.title }>
-                Search for your specific social media
+                Doc
             </h1>
             <SearchComponent activeItem={ selectedItem } searchSocialArr={ searchSocialArr } setChosenValue={ setSelectedItem } />
             <SelectedItem dataObj={ selectedItem } />

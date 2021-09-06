@@ -4,9 +4,10 @@
     width: 100%;
     padding: 10vh 2rem;
     .title{
-        font-weight: 600;
+        color: $accent-0;
+        font-weight: bold;
         font-size: 1.5rem;
-        padding-bottom: 1.5rem;
+        padding-bottom: 5vh;
     }
     .selectedItem{
         margin-top: 1rem;
@@ -17,9 +18,7 @@
     .docHelper {
         @include alignForDesktop;
         .title{
-            font-weight: 600;
-            font-size: 1.5rem;
-            padding-bottom: 1.5rem;
+            font-size: 2rem;
         }
         .selectedItem{
             margin-top: 1rem;
