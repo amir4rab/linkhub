@@ -8,13 +8,15 @@ export const dbConnect = async () => {
 
 export const addUser = async ( userEmail, name , profileImg ) => {
     const client = await dbConnect();
+    let isNew = false;
     try {
         const db = client.db();
 
         const oldUser = await db.collection('users').findOne({ email: userEmail });
 
         if ( oldUser === undefined ) {
-            await db.collection('users').insertOne(userGen(userEmail, name, profileImg));
+            // await db.collection('users').insertOne(userGen(userEmail, name, profileImg)); //* disabling singing up do to moderation reasons *//
+            isNew = true;
         }
 
         client.close();
@@ -22,6 +24,7 @@ export const addUser = async ( userEmail, name , profileImg ) => {
     catch {
         client.close();
     }
+    return isNew;
 }
 
 export const getUser = async ( userEmail ) => {

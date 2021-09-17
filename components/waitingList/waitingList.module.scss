@@ -1,0 +1,28 @@
+@import './../../styles/styles';
+
+.waitingList{
+    padding: 10vh 2rem;
+    .title{
+        text-align: center;
+        padding-bottom: 2rem;
+        text-transform: capitalize;
+    }
+    .text p{
+        // color: red;
+        line-height: 175%;
+    }
+}
+
+@include for-desktop-up {
+    .waitingList{
+        @include alignForDesktop;
+        .title{
+            font-size: 2.5rem;
+        }
+        .text p{
+            // color: red;
+            max-width: 50%;
+            margin: auto;
+        }
+    }
+}

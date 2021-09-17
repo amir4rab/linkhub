@@ -13,8 +13,9 @@ export default NextAuth({
     ],
     callbacks: {
         async signIn(user) {
-            await addUser(user.email, user.name, user.image);
-            return true
+            const isNewUser = await addUser(user.email, user.name, user.image);
+            const response = isNewUser ? '/waitinglist' : true;
+            return response;
         }
     },
 
