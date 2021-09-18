@@ -1,34 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![img of website on desktop](./public/markdown/images/image.png)
+<h1 align="center">
+  Linkhub
+</h1>
 
-## Getting Started
+## 👾 About
 
-First, run the development server:
+#### Libraries:
+- react
+- nextjs
+- next-auth
+- mongodb
+- fullstak
+- framer-motion
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## 🚀 Cloning guide
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1.  **Clone the code**
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+    Use git to clone the website code.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+    ```shell
+        git clone https://github.com/amir4rab/linkhub
+        cd gatsby-shopify-clothing-store
+    ```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+2.  **Add environment variables**
 
-## Learn More
+    start a firebase application and setup a shopify account.
+    '.env.local' file should incloude the following values:
+    ```javascript
+        GOOGLE_CLIENT_ID= 'your google client id'
+        GOOGLE_CLIENT_SECRET= 'your google client secret'
 
-To learn more about Next.js, take a look at the following resources:
+        MONGODB_URL= 'your mongodb uri'
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+        NEXTAUTH_URL= `http://localhost:3000`
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3.  **Installing the dependencies**
+    then write the following command:
+    ```shell
+      npm install
+    ```
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+4. **Start developing**
+    Everything is almost ready, just type the following command:
+    ```shell
+      npm run dev
+    ```
+    Your site is now running at http://localhost:3000!
