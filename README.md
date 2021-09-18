@@ -5,6 +5,8 @@
 
 ## 👾 About
 
+a simple full-stack, web application, developed with Nextjs and MongoDb, authorization has been done with Next-auth, by google as the authentication provider. users pages after generation, scored 95 on [web.dev](https://web.dev/measure/), lighthouse test.
+
 #### Libraries:
 - react
 - nextjs
@@ -21,7 +23,7 @@
 
     ```shell
         git clone https://github.com/amir4rab/linkhub
-        cd gatsby-shopify-clothing-store
+        cd linkhub
     ```
 
 2.  **Add environment variables**
