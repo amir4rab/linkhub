@@ -12,7 +12,6 @@ a simple full-stack, web application, developed with Nextjs and MongoDb, authori
 - nextjs
 - next-auth
 - mongodb
-- fullstak
 - framer-motion
 
 ## 🚀 Cloning guide
